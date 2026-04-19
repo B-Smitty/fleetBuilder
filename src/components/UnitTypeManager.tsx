@@ -1,0 +1,283 @@
+import { useState } from 'react'
+import type { Genre, UnitType, UnitComponent } from '../types'
+import { nanoid } from '../utils'
+import { unitTypeCost, reachableUnitIds } from '../costs'
+import ShipLink from './ShipLink'
+
+interface Props {
+  genre: Genre
+  updateGenre: (updater: (g: Genre) => Genre) => void
+}
+
+interface UnitForm {
+  name: string
+  components: UnitComponent[]
+}
+
+interface NewComp {
+  type: 'ship' | 'unit'
+  refId: string
+  quantity: number
+}
+
+const blankForm = (): UnitForm => ({ name: '', components: [] })
+const blankComp = (refId = ''): NewComp => ({ type: 'ship', refId, quantity: 1 })
+
+export default function UnitTypeManager({ genre, updateGenre }: Props) {
+  const [form, setForm] = useState<UnitForm>(blankForm())
+  const [editingId, setEditingId] = useState<string | null>(null)
+  const [newComp, setNewComp] = useState<NewComp>(() => blankComp(genre.shipTypes[0]?.id ?? ''))
+
+  function startEdit(ut: UnitType) {
+    setEditingId(ut.id)
+    setForm({ name: ut.name, components: [...ut.components] })
+    setNewComp(blankComp(genre.shipTypes[0]?.id ?? ''))
+  }
+
+  function cancelEdit() {
+    setEditingId(null)
+    setForm(blankForm())
+    setNewComp(blankComp(genre.shipTypes[0]?.id ?? ''))
+  }
+
+  function save() {
+    if (!form.name.trim()) return
+    if (editingId) {
+      updateGenre(g => ({
+        ...g,
+        unitTypes: g.unitTypes.map(ut =>
+          ut.id === editingId
+            ? { ...ut, name: form.name.trim(), components: form.components }
+            : ut,
+        ),
+      }))
+      cancelEdit()
+    } else {
+      updateGenre(g => ({
+        ...g,
+        unitTypes: [...g.unitTypes, { id: nanoid(), name: form.name.trim(), components: form.components }],
+      }))
+      setForm(blankForm())
+      setNewComp(blankComp(genre.shipTypes[0]?.id ?? ''))
+    }
+  }
+
+  function addComponent() {
+    if (!newComp.refId || newComp.quantity < 1) return
+    setForm(f => ({ ...f, components: [...f.components, { ...newComp }] }))
+    setNewComp(c => ({ ...c, refId: '', quantity: 1 }))
+  }
+
+  function removeComponent(idx: number) {
+    setForm(f => ({ ...f, components: f.components.filter((_, i) => i !== idx) }))
+  }
+
+  function updateComponentQty(idx: number, qty: number) {
+    setForm(f => ({
+      ...f,
+      components: f.components.map((c, i) => (i === idx ? { ...c, quantity: qty } : c)),
+    }))
+  }
+
+  function remove(id: string) {
+    updateGenre(g => ({
+      ...g,
+      unitTypes: g.unitTypes
+        .filter(ut => ut.id !== id)
+        .map(ut => ({
+          ...ut,
+          components: ut.components.filter(c => !(c.type === 'unit' && c.refId === id)),
+        })),
+      fleets: g.fleets.map(f => ({
+        ...f,
+        entries: f.entries.filter(e => !(e.type === 'unit' && e.refId === id)),
+      })),
+    }))
+    if (editingId === id) cancelEdit()
+  }
+
+  function setCompType(type: 'ship' | 'unit') {
+    const refId =
+      type === 'ship'
+        ? (genre.shipTypes[0]?.id ?? '')
+        : (availableUnits[0]?.id ?? '')
+    setNewComp({ type, refId, quantity: 1 })
+  }
+
+  const availableUnits = genre.unitTypes.filter(ut => {
+    if (ut.id === editingId) return false
+    if (!editingId) return true
+    return !reachableUnitIds(ut.id, genre.unitTypes).has(editingId)
+  })
+
+  function compNode(comp: UnitComponent) {
+    if (comp.type === 'ship') {
+      const ship = genre.shipTypes.find(s => s.id === comp.refId)
+      return <ShipLink name={ship?.name ?? '(deleted)'} url={ship?.url} />
+    }
+    return <>{genre.unitTypes.find(u => u.id === comp.refId)?.name ?? '(deleted)'}</>
+  }
+
+  const isEditing = editingId !== null
+  const compOptions = newComp.type === 'ship' ? genre.shipTypes : availableUnits
+
+  return (
+    <div>
+      <h2 className="text-xl font-semibold mb-4">Unit Types</h2>
+
+      <div className="bg-gray-800 rounded-lg p-4 mb-6">
+        <p className="text-xs text-gray-400 mb-3">{isEditing ? 'Editing unit type' : 'New unit type'}</p>
+
+        <div className="flex gap-3 items-end mb-4">
+          <div className="flex-1">
+            <label className="block text-xs text-gray-400 mb-1">Name</label>
+            <input
+              className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-sm focus:outline-none focus:border-blue-500"
+              value={form.name}
+              onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+              placeholder="e.g. Fighter Wing"
+            />
+          </div>
+          <button
+            onClick={save}
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded text-sm font-medium transition-colors"
+          >
+            {isEditing ? 'Update' : 'Add Unit Type'}
+          </button>
+          {isEditing && (
+            <button
+              onClick={cancelEdit}
+              className="px-4 py-2 bg-gray-600 hover:bg-gray-500 rounded text-sm font-medium transition-colors"
+            >
+              Cancel
+            </button>
+          )}
+        </div>
+
+        <div>
+          <p className="text-xs text-gray-400 mb-2">Components</p>
+          {form.components.length === 0 ? (
+            <p className="text-xs text-gray-500 mb-3">No components added yet.</p>
+          ) : (
+            <div className="space-y-1 mb-3">
+              {form.components.map((comp, i) => (
+                <div key={i} className="flex items-center gap-2 bg-gray-700 rounded px-3 py-1.5 text-sm">
+                  <span className="text-xs text-gray-400 w-10 shrink-0">
+                    {comp.type === 'ship' ? 'Ship' : 'Unit'}
+                  </span>
+                  <span className="flex-1 truncate">{compNode(comp)}</span>
+                  <input
+                    type="number"
+                    min={1}
+                    value={comp.quantity}
+                    onChange={e => updateComponentQty(i, Number(e.target.value))}
+                    className="w-16 bg-gray-600 border border-gray-500 rounded px-2 py-1 text-xs text-right"
+                  />
+                  <button
+                    onClick={() => removeComponent(i)}
+                    className="text-gray-500 hover:text-red-400 transition-colors text-xs ml-1"
+                  >
+                    ✕
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="flex gap-2 items-center">
+            <select
+              value={newComp.type}
+              onChange={e => setCompType(e.target.value as 'ship' | 'unit')}
+              className="bg-gray-700 border border-gray-600 rounded px-2 py-1.5 text-xs"
+            >
+              <option value="ship">Ship</option>
+              <option value="unit">Unit</option>
+            </select>
+            <select
+              value={newComp.refId}
+              onChange={e => setNewComp(c => ({ ...c, refId: e.target.value }))}
+              className="flex-1 bg-gray-700 border border-gray-600 rounded px-2 py-1.5 text-xs"
+              disabled={compOptions.length === 0}
+            >
+              {compOptions.length === 0 ? (
+                <option value="">— none available —</option>
+              ) : (
+                <>
+                  <option value="">— select —</option>
+                  {compOptions.map(o => (
+                    <option key={o.id} value={o.id}>{o.name}</option>
+                  ))}
+                </>
+              )}
+            </select>
+            <input
+              type="number"
+              min={1}
+              value={newComp.quantity}
+              onChange={e => setNewComp(c => ({ ...c, quantity: Number(e.target.value) }))}
+              className="w-16 bg-gray-700 border border-gray-600 rounded px-2 py-1.5 text-xs text-right"
+            />
+            <button
+              onClick={addComponent}
+              disabled={!newComp.refId}
+              className="px-3 py-1.5 bg-gray-600 hover:bg-gray-500 disabled:opacity-40 disabled:cursor-not-allowed rounded text-xs transition-colors whitespace-nowrap"
+            >
+              + Add
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {genre.unitTypes.length === 0 ? (
+        <p className="text-gray-500 text-sm">No unit types defined yet.</p>
+      ) : (
+        <div className="space-y-2">
+          {genre.unitTypes.map(ut => {
+            const cost = unitTypeCost(ut.id, genre.shipTypes, genre.unitTypes)
+            return (
+              <div
+                key={ut.id}
+                className={`bg-gray-800 rounded-lg px-4 py-3 ${
+                  editingId === ut.id ? 'ring-1 ring-blue-500' : ''
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="font-medium">{ut.name}</span>
+                    <span className="ml-3 text-sm text-gray-400 font-mono">
+                      {cost.toLocaleString()} / unit
+                    </span>
+                  </div>
+                  <div className="space-x-3">
+                    <button
+                      onClick={() => startEdit(ut)}
+                      className="text-xs text-gray-400 hover:text-blue-400 transition-colors"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => remove(ut.id)}
+                      className="text-xs text-gray-400 hover:text-red-400 transition-colors"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+                {ut.components.length > 0 && (
+                  <div className="mt-2 space-y-0.5 pl-3 border-l border-gray-700">
+                    {ut.components.map((comp, i) => (
+                      <div key={i} className="text-xs text-gray-400">
+                        {comp.quantity}× {compNode(comp)}{' '}
+                        <span className="text-gray-600">({comp.type})</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}
