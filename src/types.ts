@@ -2,6 +2,7 @@ export interface ShipType {
   id: string
   name: string
   costPerShip: number
+  shipClass?: string
   url?: string
 }
 

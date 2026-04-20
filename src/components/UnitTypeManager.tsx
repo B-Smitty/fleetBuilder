@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import type { Genre, UnitType, UnitComponent } from '../types'
 import { nanoid } from '../utils'
 import { unitTypeCost, reachableUnitIds } from '../costs'
@@ -28,6 +28,7 @@ const blankComp = (refId = ''): NewComp => ({ type: 'ship', refId, quantity: 1 }
 export default function UnitTypeManager({ genre, updateGenre }: Props) {
   const [form, setForm] = useState<UnitForm>(blankForm())
   const [editingId, setEditingId] = useState<string | null>(null)
+  const formRef = useRef<HTMLDivElement>(null)
   const [newComp, setNewComp] = useState<NewComp>(() => blankComp(genre.shipTypes[0]?.id ?? ''))
   const [sortCol, setSortCol] = useState<SortCol | null>(null)
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
@@ -61,6 +62,7 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
     setEditingId(ut.id)
     setForm({ name: ut.name, components: [...ut.components] })
     setNewComp(blankComp(genre.shipTypes[0]?.id ?? ''))
+    setTimeout(() => formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0)
   }
 
   function cancelEdit() {
@@ -162,6 +164,14 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
     return <>{genre.unitTypes.find(u => u.id === comp.refId)?.name ?? '(deleted)'}</>
   }
 
+  function compTypeLabel(comp: UnitComponent): string {
+    if (comp.type === 'ship') {
+      const ship = genre.shipTypes.find(s => s.id === comp.refId)
+      return ship?.shipClass ?? 'Ship'
+    }
+    return 'Unit'
+  }
+
   const isEditing = editingId !== null
   const compOptions = newComp.type === 'ship' ? genre.shipTypes : availableUnits
   const hiddenUnitCount = editingId
@@ -187,7 +197,7 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
     <div>
       <h2 className="text-xl font-semibold mb-4">Unit Types</h2>
 
-      <div className="bg-gray-800 rounded-lg p-4 mb-6">
+      <div ref={formRef} className="bg-gray-800 rounded-lg p-4 mb-6">
         <p className="text-xs text-gray-400 mb-3">{isEditing ? 'Editing unit type' : 'New unit type'}</p>
 
         <div className="flex gap-3 items-end mb-4">
@@ -224,8 +234,8 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
             <div className="space-y-1 mb-3">
               {form.components.map((comp, i) => (
                 <div key={i} className="flex items-center gap-2 bg-gray-700 rounded px-3 py-1.5 text-sm">
-                  <span className="text-xs text-gray-400 w-10 shrink-0">
-                    {comp.type === 'ship' ? 'Ship' : 'Unit'}
+                  <span className="text-xs text-gray-400 w-10 shrink-0 truncate" title={compTypeLabel(comp)}>
+                    {compTypeLabel(comp)}
                   </span>
                   <span className="flex-1 truncate">{compNode(comp)}</span>
                   <input
@@ -374,7 +384,7 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
                         {ut.components.map((comp, ci) => (
                           <div key={ci} className="text-xs text-gray-400">
                             {comp.quantity}× {compNode(comp)}{' '}
-                            <span className="text-gray-600">({comp.type})</span>
+                            <span className="text-gray-600">({compTypeLabel(comp)})</span>
                           </div>
                         ))}
                       </div>

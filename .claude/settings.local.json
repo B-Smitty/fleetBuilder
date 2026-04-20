@@ -13,7 +13,10 @@
       "Bash('/c/Program Files/nodejs/npm.cmd' create vite@latest . -- --template react-ts)",
       "Bash('/c/Program Files/nodejs/npm.cmd' create vite@latest . -- --template react-ts --yes)",
       "Bash('/c/Program Files/nodejs/npm.cmd' install)",
-      "Bash('/c/Program Files/nodejs/npm.cmd' run dev)"
+      "Bash('/c/Program Files/nodejs/npm.cmd' run dev)",
+      "Bash(awk -F',' 'NR>1 {print $2}' /c/Users/brent/Documents/fleetBuilder/starWars/empire_ships_costs.csv)",
+      "Bash(awk -F',' 'NR>1 {print $1 \" | \" $2}' /c/Users/brent/Documents/fleetBuilder/starWars/empire_ships_costs.csv)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }

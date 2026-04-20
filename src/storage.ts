@@ -2,23 +2,31 @@ import type { AppState, Genre } from './types'
 import { nanoid } from './utils'
 import { createEmpireGenre } from './data/empireSeeds'
 
-const KEY = 'fleetBuilder_v3'
-const PREV_KEYS = ['fleetBuilder_v2', 'fleetBuilder_v1']
+const KEY = 'fleetBuilder_v4'
+const PREV_KEYS = ['fleetBuilder_v3', 'fleetBuilder_v2', 'fleetBuilder_v1']
 
 function defaultState(): AppState {
   const empire = createEmpireGenre()
   return { genres: [empire], activeGenreId: empire.id }
 }
 
-/** Patch any Empire genre ships that are missing URLs from the seed. */
-function patchEmpireUrls(genres: Genre[]): Genre[] {
+/** Patch any Empire genre ships that are missing URLs or shipClass from the seed. */
+function patchEmpireFields(genres: Genre[]): Genre[] {
   const seed = createEmpireGenre()
-  const seedMap = new Map(seed.shipTypes.map(s => [s.id, s.url]))
+  const seedMap = new Map(seed.shipTypes.map(s => [s.id, s]))
   return genres.map(g => {
     if (g.id !== 'genre_empire') return g
     return {
       ...g,
-      shipTypes: g.shipTypes.map(s => (!s.url && seedMap.has(s.id) ? { ...s, url: seedMap.get(s.id) } : s)),
+      shipTypes: g.shipTypes.map(s => {
+        const ref = seedMap.get(s.id)
+        if (!ref) return s
+        return {
+          ...s,
+          url: s.url ?? ref.url,
+          shipClass: s.shipClass ?? ref.shipClass,
+        }
+      }),
     }
   })
 }
@@ -55,9 +63,9 @@ export function loadState(): AppState {
 
     const { genres: rawGenres, activeGenreId } = parseGenres(raw)
 
-    // Ensure Empire exists, then patch any missing URLs
+    // Ensure Empire exists, then patch any missing fields
     const hasEmpire = rawGenres.some(g => g.id === 'genre_empire')
-    const genres = patchEmpireUrls(hasEmpire ? rawGenres : [...rawGenres, createEmpireGenre()])
+    const genres = patchEmpireFields(hasEmpire ? rawGenres : [...rawGenres, createEmpireGenre()])
 
     return { genres, activeGenreId: activeGenreId ?? genres[0]?.id ?? null }
   } catch {

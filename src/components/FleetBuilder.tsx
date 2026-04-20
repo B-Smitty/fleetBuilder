@@ -139,7 +139,7 @@ export default function FleetBuilder({ genre, updateGenre }: Props) {
       for (const entry of activeFleet.entries) {
         const cost = entryCost(entry)
         lines.push(
-          `| ${entryName(entry)} | ${entry.type} | ${entry.quantity} | ${cost.toLocaleString()} | ${(cost * entry.quantity).toLocaleString()} |`,
+          `| ${entryName(entry)} | ${entry.type === 'ship' ? (genre.shipTypes.find(s => s.id === entry.refId)?.shipClass ?? 'Ship') : 'Unit'} | ${entry.quantity} | ${cost.toLocaleString()} | ${(cost * entry.quantity).toLocaleString()} |`,
         )
       }
       const total = fleetTotalCost(activeFleet.entries, genre.shipTypes, genre.unitTypes)
@@ -164,11 +164,10 @@ export default function FleetBuilder({ genre, updateGenre }: Props) {
           const cost = unitTypeCost(unitId, genre.shipTypes, genre.unitTypes)
           lines.push('', `### ${ut.name}`)
           for (const comp of ut.components) {
-            const name =
-              comp.type === 'ship'
-                ? (genre.shipTypes.find(s => s.id === comp.refId)?.name ?? '(deleted)')
-                : (genre.unitTypes.find(u => u.id === comp.refId)?.name ?? '(deleted)')
-            lines.push(`- ${comp.quantity}× ${name} (${comp.type})`)
+            const ship = comp.type === 'ship' ? genre.shipTypes.find(s => s.id === comp.refId) : null
+            const name = ship?.name ?? (genre.unitTypes.find(u => u.id === comp.refId)?.name ?? '(deleted)')
+            const label = ship ? (ship.shipClass ?? 'Ship') : 'Unit'
+            lines.push(`- ${comp.quantity}× ${name} (${label})`)
           }
           lines.push('', `*Unit cost: ${cost.toLocaleString()}*`)
         }

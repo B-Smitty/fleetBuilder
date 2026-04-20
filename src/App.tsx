@@ -11,7 +11,7 @@ type Tab = 'fleet' | 'units' | 'ships'
 const TABS: { key: Tab; label: string }[] = [
   { key: 'fleet', label: 'Fleet' },
   { key: 'units', label: 'Unit Types' },
-  { key: 'ships', label: 'Ship Types' },
+  { key: 'ships', label: 'Ship Classes' },
 ]
 
 export default function App() {
