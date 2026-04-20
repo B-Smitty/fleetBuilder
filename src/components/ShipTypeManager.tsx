@@ -129,6 +129,18 @@ export default function ShipTypeManager({ genre, updateGenre }: Props) {
       })
     : filtered
 
+  function download(content: string, filename: string, mime: string) {
+    const blob = new Blob([content], { type: mime })
+    const blobUrl = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = blobUrl
+    a.download = filename
+    a.click()
+    URL.revokeObjectURL(blobUrl)
+  }
+
+  const baseName = genre.name.replace(/[^a-z0-9]+/gi, '_')
+
   function exportCsv() {
     const rows = [
       'name,cost,class,url',
@@ -136,13 +148,100 @@ export default function ShipTypeManager({ genre, updateGenre }: Props) {
         [escCsv(s.name), s.costPerShip, escCsv(s.shipClass ?? ''), escCsv(s.url ?? '')].join(',')
       ),
     ]
-    const blob = new Blob([rows.join('\n')], { type: 'text/csv' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `${genre.name.replace(/[^a-z0-9]+/gi, '_')}_ships.csv`
-    a.click()
-    URL.revokeObjectURL(url)
+    download(rows.join('\n'), `${baseName}_ships.csv`, 'text/csv')
+  }
+
+  function exportMarkdown() {
+    const col = (v: string, w: number) => v.padEnd(w)
+    const ships = genre.shipTypes
+    const wName = Math.max(4, ...ships.map(s => s.name.length))
+    const wCost = Math.max(4, ...ships.map(s => s.costPerShip.toLocaleString().length))
+    const wCls  = Math.max(5, ...ships.map(s => (s.shipClass ?? '').length))
+    const wUrl  = Math.max(3, ...ships.map(s => (s.url ?? '').length))
+    const sep = `| ${'-'.repeat(wName)} | ${'-'.repeat(wCost)} | ${'-'.repeat(wCls)} | ${'-'.repeat(wUrl)} |`
+    const header = `| ${col('Name', wName)} | ${col('Cost', wCost)} | ${col('Class', wCls)} | ${col('URL', wUrl)} |`
+    const rows = ships.map(s =>
+      `| ${col(s.name, wName)} | ${col(s.costPerShip.toLocaleString(), wCost)} | ${col(s.shipClass ?? '', wCls)} | ${col(s.url ?? '', wUrl)} |`
+    )
+    download([header, sep, ...rows].join('\n'), `${baseName}_ships.md`, 'text/markdown')
+  }
+
+  function parseAndImport(text: string) {
+    const lines = text.split(/\r?\n/).filter(l => l.trim())
+    if (lines.length < 2) { setImportError('File appears empty.'); return }
+
+    const isMd = lines[0].trimStart().startsWith('|')
+
+    // Parse a row into an array of cell strings
+    function splitRow(line: string): string[] {
+      return line.split('|').slice(1, -1).map(c => c.trim())
+    }
+    function parseCsvRow(line: string): string[] {
+      const cols: string[] = []
+      let cur = '', inQuote = false
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i]
+        if (inQuote) {
+          if (ch === '"' && line[i + 1] === '"') { cur += '"'; i++ }
+          else if (ch === '"') inQuote = false
+          else cur += ch
+        } else {
+          if (ch === '"') inQuote = true
+          else if (ch === ',') { cols.push(cur); cur = '' }
+          else cur += ch
+        }
+      }
+      cols.push(cur)
+      return cols
+    }
+
+    let dataLines: string[]
+    let headers: string[]
+    if (isMd) {
+      headers = splitRow(lines[0]).map(h => h.toLowerCase())
+      // skip the separator line (contains ---)
+      dataLines = lines.slice(1).filter(l => !/^\s*\|[\s\-:]+\|/.test(l))
+    } else {
+      headers = lines[0].split(',').map(h => h.trim().toLowerCase())
+      dataLines = lines.slice(1)
+    }
+
+    const idx = {
+      name: headers.findIndex(h => h === 'name'),
+      cost: headers.findIndex(h => h === 'cost' || h === 'costpership'),
+      cls:  headers.findIndex(h => h === 'class' || h === 'shipclass' || h === 'type'),
+      url:  headers.findIndex(h => h === 'url'),
+    }
+    if (idx.name === -1 || idx.cost === -1) {
+      setImportError(`${isMd ? 'Markdown table' : 'CSV'} must have at least "name" and "cost" columns.`)
+      return
+    }
+
+    const existingNames = new Set(genre.shipTypes.map(s => s.name.toLowerCase()))
+    const newShips: ShipType[] = []
+    const skipped: string[] = []
+
+    for (const line of dataLines) {
+      const cols = isMd ? splitRow(line) : parseCsvRow(line)
+      const name = cols[idx.name]?.trim()
+      if (!name) continue
+      if (existingNames.has(name.toLowerCase())) { skipped.push(name); continue }
+      const cost = Number(cols[idx.cost]?.trim() ?? 0)
+      const shipClass = idx.cls !== -1 ? (cols[idx.cls]?.trim() || undefined) : undefined
+      const url = idx.url !== -1 ? (cols[idx.url]?.trim() || undefined) : undefined
+      newShips.push({ id: nanoid(), name, costPerShip: isNaN(cost) ? 0 : cost, shipClass, url })
+      existingNames.add(name.toLowerCase())
+    }
+
+    if (newShips.length === 0) {
+      setImportError(skipped.length > 0
+        ? `All ${skipped.length} rows already exist — nothing imported.`
+        : 'No valid rows found.')
+      return
+    }
+    updateGenre(g => ({ ...g, shipTypes: [...g.shipTypes, ...newShips] }))
+    const msg = `Imported ${newShips.length} ship${newShips.length > 1 ? 's' : ''}${skipped.length > 0 ? `, skipped ${skipped.length} duplicate${skipped.length > 1 ? 's' : ''}` : ''}.`
+    setImportError(msg)
   }
 
   function handleImport(e: React.ChangeEvent<HTMLInputElement>) {
@@ -150,74 +249,10 @@ export default function ShipTypeManager({ genre, updateGenre }: Props) {
     const file = e.target.files?.[0]
     if (!file) return
     e.target.value = ''
-
     const reader = new FileReader()
     reader.onload = ev => {
-      try {
-        const text = (ev.target?.result as string) ?? ''
-        const lines = text.split(/\r?\n/).filter(l => l.trim())
-        if (lines.length < 2) { setImportError('File appears empty.'); return }
-
-        const headers = lines[0].split(',').map(h => h.trim().toLowerCase())
-        const idx = {
-          name: headers.indexOf('name'),
-          cost: headers.findIndex(h => h === 'cost' || h === 'costpership'),
-          cls:  headers.findIndex(h => h === 'class' || h === 'shipclass' || h === 'type'),
-          url:  headers.indexOf('url'),
-        }
-        if (idx.name === -1 || idx.cost === -1) {
-          setImportError('CSV must have at least "name" and "cost" columns.')
-          return
-        }
-
-        function parseCsvRow(line: string): string[] {
-          const cols: string[] = []
-          let cur = '', inQuote = false
-          for (let i = 0; i < line.length; i++) {
-            const ch = line[i]
-            if (inQuote) {
-              if (ch === '"' && line[i + 1] === '"') { cur += '"'; i++ }
-              else if (ch === '"') inQuote = false
-              else cur += ch
-            } else {
-              if (ch === '"') inQuote = true
-              else if (ch === ',') { cols.push(cur); cur = '' }
-              else cur += ch
-            }
-          }
-          cols.push(cur)
-          return cols
-        }
-
-        const existingNames = new Set(genre.shipTypes.map(s => s.name.toLowerCase()))
-        const newShips: ShipType[] = []
-        const skipped: string[] = []
-
-        for (const line of lines.slice(1)) {
-          const cols = parseCsvRow(line)
-          const name = cols[idx.name]?.trim()
-          if (!name) continue
-          if (existingNames.has(name.toLowerCase())) { skipped.push(name); continue }
-          const cost = Number(cols[idx.cost]?.trim() ?? 0)
-          const shipClass = idx.cls !== -1 ? (cols[idx.cls]?.trim() || undefined) : undefined
-          const url = idx.url !== -1 ? (cols[idx.url]?.trim() || undefined) : undefined
-          newShips.push({ id: nanoid(), name, costPerShip: isNaN(cost) ? 0 : cost, shipClass, url })
-          existingNames.add(name.toLowerCase())
-        }
-
-        if (newShips.length === 0) {
-          setImportError(skipped.length > 0
-            ? `All ${skipped.length} rows already exist — nothing imported.`
-            : 'No valid rows found.')
-          return
-        }
-
-        updateGenre(g => ({ ...g, shipTypes: [...g.shipTypes, ...newShips] }))
-        const msg = `Imported ${newShips.length} ship${newShips.length > 1 ? 's' : ''}${skipped.length > 0 ? `, skipped ${skipped.length} duplicate${skipped.length > 1 ? 's' : ''}` : ''}.`
-        setImportError(msg)
-      } catch {
-        setImportError('Failed to parse file.')
-      }
+      try { parseAndImport((ev.target?.result as string) ?? '') }
+      catch { setImportError('Failed to parse file.') }
     }
     reader.readAsText(file)
   }
@@ -241,13 +276,21 @@ export default function ShipTypeManager({ genre, updateGenre }: Props) {
             Export CSV
           </button>
           <button
+            onClick={exportMarkdown}
+            disabled={genre.shipTypes.length === 0}
+            className="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 disabled:opacity-40 disabled:cursor-not-allowed rounded text-xs transition-colors"
+            title="Export ship classes as Markdown table"
+          >
+            Export MD
+          </button>
+          <button
             onClick={() => { setImportError(null); importRef.current?.click() }}
             className="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 rounded text-xs transition-colors"
-            title="Import ship classes from CSV"
+            title="Import ship classes from CSV or Markdown table"
           >
-            Import CSV
+            Import
           </button>
-          <input ref={importRef} type="file" accept=".csv,text/csv" className="hidden" onChange={handleImport} />
+          <input ref={importRef} type="file" accept=".csv,.md,text/csv,text/markdown,text/plain" className="hidden" onChange={handleImport} />
         </div>
       </div>
       {importError && (

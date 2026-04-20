@@ -183,6 +183,62 @@ export default function FleetBuilder({ genre, updateGenre }: Props) {
     URL.revokeObjectURL(url)
   }
 
+  function exportFlatCsv() {
+    if (!activeFleet) return
+
+    // Recursively expand unit types into a ship-id → quantity map
+    const shipCounts = new Map<string, number>()
+    function addUnit(unitId: string, multiplier: number, visited: Set<string>) {
+      if (visited.has(unitId)) return
+      const ut = genre.unitTypes.find(u => u.id === unitId)
+      if (!ut) return
+      const next = new Set(visited).add(unitId)
+      for (const comp of ut.components) {
+        if (comp.type === 'ship') {
+          shipCounts.set(comp.refId, (shipCounts.get(comp.refId) ?? 0) + comp.quantity * multiplier)
+        } else {
+          addUnit(comp.refId, comp.quantity * multiplier, next)
+        }
+      }
+    }
+    for (const entry of activeFleet.entries) {
+      if (entry.type === 'ship') {
+        shipCounts.set(entry.refId, (shipCounts.get(entry.refId) ?? 0) + entry.quantity)
+      } else {
+        addUnit(entry.refId, entry.quantity, new Set())
+      }
+    }
+
+    // Build rows sorted by class then name
+    type BomRow = { shipClass: string; name: string; qty: number; unitCost: number; subtotal: number }
+    const rows: BomRow[] = []
+    for (const [shipId, qty] of shipCounts) {
+      const ship = genre.shipTypes.find(s => s.id === shipId)
+      const name = ship?.name ?? '(deleted)'
+      const unitCost = ship ? shipTypeCost(shipId, genre.shipTypes) : 0
+      rows.push({ shipClass: ship?.shipClass ?? '', name, qty, unitCost, subtotal: unitCost * qty })
+    }
+    rows.sort((a, b) => a.shipClass.localeCompare(b.shipClass) || a.name.localeCompare(b.name))
+
+    const grandTotal = rows.reduce((s, r) => s + r.subtotal, 0)
+    const esc = (v: string) =>
+      v.includes(',') || v.includes('"') || v.includes('\n') ? `"${v.replace(/"/g, '""')}"` : v
+
+    const csvLines = [
+      'Class,Ship,Qty,Unit Cost,Subtotal',
+      ...rows.map(r => [esc(r.shipClass), esc(r.name), r.qty, r.unitCost, r.subtotal].join(',')),
+      `,,,,${grandTotal}`,
+    ]
+
+    const blob = new Blob([csvLines.join('\n')], { type: 'text/csv' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${activeFleet.name.replace(/[^a-z0-9]+/gi, '_')}_bom.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
   const options = addType === 'ship' ? genre.shipTypes : genre.unitTypes
   const rawEntries = activeFleet?.entries ?? []
 
@@ -274,6 +330,14 @@ export default function FleetBuilder({ genre, updateGenre }: Props) {
               Delete
             </button>
             <div className="ml-auto flex gap-2">
+              <button
+                onClick={exportFlatCsv}
+                disabled={!activeFleet || activeFleet.entries.length === 0}
+                className="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 disabled:opacity-40 disabled:cursor-not-allowed rounded text-sm transition-colors"
+                title="Export flattened bill of materials as CSV"
+              >
+                Export BOM
+              </button>
               <button
                 onClick={exportMarkdown}
                 disabled={!activeFleet || activeFleet.entries.length === 0}
