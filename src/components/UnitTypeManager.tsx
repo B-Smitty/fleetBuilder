@@ -20,6 +20,8 @@ interface NewComp {
   quantity: number
 }
 
+type SortCol = 'name' | 'cost'
+
 const blankForm = (): UnitForm => ({ name: '', components: [] })
 const blankComp = (refId = ''): NewComp => ({ type: 'ship', refId, quantity: 1 })
 
@@ -27,6 +29,33 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
   const [form, setForm] = useState<UnitForm>(blankForm())
   const [editingId, setEditingId] = useState<string | null>(null)
   const [newComp, setNewComp] = useState<NewComp>(() => blankComp(genre.shipTypes[0]?.id ?? ''))
+  const [sortCol, setSortCol] = useState<SortCol | null>(null)
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
+
+  function toggleSort(col: SortCol) {
+    if (sortCol === col) {
+      setSortDir(d => (d === 'asc' ? 'desc' : 'asc'))
+    } else {
+      setSortCol(col)
+      setSortDir('asc')
+    }
+  }
+
+  function clearSort() {
+    setSortCol(null)
+  }
+
+  function move(id: string, delta: -1 | 1) {
+    clearSort()
+    updateGenre(g => {
+      const arr = [...g.unitTypes]
+      const idx = arr.findIndex(u => u.id === id)
+      const next = idx + delta
+      if (next < 0 || next >= arr.length) return g
+      ;[arr[idx], arr[next]] = [arr[next], arr[idx]]
+      return { ...g, unitTypes: arr }
+    })
+  }
 
   function startEdit(ut: UnitType) {
     setEditingId(ut.id)
@@ -42,6 +71,13 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
 
   function save() {
     if (!form.name.trim()) return
+    const cycleComp = form.components.find(
+      c => c.type === 'unit' && (
+        c.refId === editingId ||
+        (editingId != null && reachableUnitIds(c.refId, genre.unitTypes).has(editingId))
+      )
+    )
+    if (cycleComp) return
     if (editingId) {
       updateGenre(g => ({
         ...g,
@@ -62,8 +98,16 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
     }
   }
 
+  function wouldCreateCycle(refId: string): boolean {
+    if (newComp.type !== 'unit') return false
+    if (refId === editingId) return true
+    if (editingId && reachableUnitIds(refId, genre.unitTypes).has(editingId)) return true
+    return false
+  }
+
   function addComponent() {
     if (!newComp.refId || newComp.quantity < 1) return
+    if (wouldCreateCycle(newComp.refId)) return
     setForm(f => ({ ...f, components: [...f.components, { ...newComp }] }))
     setNewComp(c => ({ ...c, refId: '', quantity: 1 }))
   }
@@ -120,6 +164,24 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
 
   const isEditing = editingId !== null
   const compOptions = newComp.type === 'ship' ? genre.shipTypes : availableUnits
+  const hiddenUnitCount = editingId
+    ? genre.unitTypes.length - 1 - availableUnits.length
+    : 0
+
+  const displayed = sortCol
+    ? [...genre.unitTypes].sort((a, b) => {
+        const dir = sortDir === 'asc' ? 1 : -1
+        if (sortCol === 'name') return a.name.localeCompare(b.name) * dir
+        const ca = unitTypeCost(a.id, genre.shipTypes, genre.unitTypes)
+        const cb = unitTypeCost(b.id, genre.shipTypes, genre.unitTypes)
+        return (ca - cb) * dir
+      })
+    : genre.unitTypes
+
+  function sortIndicator(col: SortCol) {
+    if (sortCol !== col) return <span className="ml-1 text-gray-600">⇅</span>
+    return <span className="ml-1 text-blue-400">{sortDir === 'asc' ? '▲' : '▼'}</span>
+  }
 
   return (
     <div>
@@ -225,58 +287,113 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
               + Add
             </button>
           </div>
+          {newComp.type === 'unit' && hiddenUnitCount > 0 && (
+            <p className="mt-2 text-xs text-amber-600">
+              {hiddenUnitCount} unit{hiddenUnitCount > 1 ? 's' : ''} hidden — adding {hiddenUnitCount > 1 ? 'them' : 'it'} would create a circular dependency.
+            </p>
+          )}
         </div>
       </div>
 
       {genre.unitTypes.length === 0 ? (
         <p className="text-gray-500 text-sm">No unit types defined yet.</p>
       ) : (
-        <div className="space-y-2">
-          {genre.unitTypes.map(ut => {
-            const cost = unitTypeCost(ut.id, genre.shipTypes, genre.unitTypes)
-            return (
-              <div
-                key={ut.id}
-                className={`bg-gray-800 rounded-lg px-4 py-3 ${
-                  editingId === ut.id ? 'ring-1 ring-blue-500' : ''
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="font-medium">{ut.name}</span>
-                    <span className="ml-3 text-sm text-gray-400 font-mono">
-                      {cost.toLocaleString()} / unit
-                    </span>
-                  </div>
-                  <div className="space-x-3">
-                    <button
-                      onClick={() => startEdit(ut)}
-                      className="text-xs text-gray-400 hover:text-blue-400 transition-colors"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => remove(ut.id)}
-                      className="text-xs text-gray-400 hover:text-red-400 transition-colors"
-                    >
-                      Delete
-                    </button>
+        <>
+          <div className="flex items-center gap-3 mb-2 text-xs text-gray-400 border-b border-gray-700 pb-2">
+            {!sortCol && <div className="w-16 shrink-0"></div>}
+            <button
+              onClick={() => toggleSort('name')}
+              className="font-medium cursor-pointer select-none hover:text-gray-200 flex items-center"
+            >
+              Name{sortIndicator('name')}
+            </button>
+            <button
+              onClick={() => toggleSort('cost')}
+              className="ml-auto font-medium cursor-pointer select-none hover:text-gray-200 flex items-center"
+            >
+              Cost / Unit{sortIndicator('cost')}
+            </button>
+            <div className="w-16"></div>
+          </div>
+
+          <div className="space-y-2">
+            {displayed.map((ut, i) => {
+              const cost = unitTypeCost(ut.id, genre.shipTypes, genre.unitTypes)
+              return (
+                <div
+                  key={ut.id}
+                  className={`bg-gray-800 rounded-lg px-4 py-3 flex gap-2 items-start ${
+                    editingId === ut.id ? 'ring-1 ring-blue-500' : ''
+                  }`}
+                >
+                  {!sortCol && (
+                    <div className="flex flex-col gap-0.5 shrink-0 mt-0.5">
+                      <button
+                        onClick={() => move(ut.id, -1)}
+                        disabled={i === 0}
+                        className="px-1 text-gray-600 hover:text-gray-300 disabled:opacity-20 disabled:cursor-not-allowed text-xs leading-none"
+                        title="Move up"
+                      >
+                        ▲
+                      </button>
+                      <button
+                        onClick={() => move(ut.id, 1)}
+                        disabled={i === displayed.length - 1}
+                        className="px-1 text-gray-600 hover:text-gray-300 disabled:opacity-20 disabled:cursor-not-allowed text-xs leading-none"
+                        title="Move down"
+                      >
+                        ▼
+                      </button>
+                    </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="font-medium">{ut.name}</span>
+                        <span className="ml-3 text-sm text-gray-400 font-mono">
+                          {cost.toLocaleString()} / unit
+                        </span>
+                      </div>
+                      <div className="space-x-3">
+                        <button
+                          onClick={() => startEdit(ut)}
+                          className="text-xs text-gray-400 hover:text-blue-400 transition-colors"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => remove(ut.id)}
+                          className="text-xs text-gray-400 hover:text-red-400 transition-colors"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                    {ut.components.length > 0 && (
+                      <div className="mt-2 space-y-0.5 pl-3 border-l border-gray-700">
+                        {ut.components.map((comp, ci) => (
+                          <div key={ci} className="text-xs text-gray-400">
+                            {comp.quantity}× {compNode(comp)}{' '}
+                            <span className="text-gray-600">({comp.type})</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
-                {ut.components.length > 0 && (
-                  <div className="mt-2 space-y-0.5 pl-3 border-l border-gray-700">
-                    {ut.components.map((comp, i) => (
-                      <div key={i} className="text-xs text-gray-400">
-                        {comp.quantity}× {compNode(comp)}{' '}
-                        <span className="text-gray-600">({comp.type})</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )
-          })}
-        </div>
+              )
+            })}
+          </div>
+
+          {sortCol && (
+            <button
+              onClick={clearSort}
+              className="mt-3 text-xs text-gray-500 hover:text-gray-300 transition-colors"
+            >
+              ✕ Clear sort (restore manual order)
+            </button>
+          )}
+        </>
       )}
     </div>
   )

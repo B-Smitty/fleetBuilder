@@ -14,11 +14,40 @@ interface Form {
   url: string
 }
 
+type SortCol = 'name' | 'cost'
+
 const blank = (): Form => ({ name: '', costPerShip: 0, url: '' })
 
 export default function ShipTypeManager({ genre, updateGenre }: Props) {
   const [form, setForm] = useState<Form>(blank())
   const [editingId, setEditingId] = useState<string | null>(null)
+  const [sortCol, setSortCol] = useState<SortCol | null>(null)
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
+
+  function toggleSort(col: SortCol) {
+    if (sortCol === col) {
+      setSortDir(d => (d === 'asc' ? 'desc' : 'asc'))
+    } else {
+      setSortCol(col)
+      setSortDir('asc')
+    }
+  }
+
+  function clearSort() {
+    setSortCol(null)
+  }
+
+  function move(id: string, delta: -1 | 1) {
+    clearSort()
+    updateGenre(g => {
+      const arr = [...g.shipTypes]
+      const idx = arr.findIndex(s => s.id === id)
+      const next = idx + delta
+      if (next < 0 || next >= arr.length) return g
+      ;[arr[idx], arr[next]] = [arr[next], arr[idx]]
+      return { ...g, shipTypes: arr }
+    })
+  }
 
   function startEdit(ship: ShipType) {
     setEditingId(ship.id)
@@ -65,6 +94,19 @@ export default function ShipTypeManager({ genre, updateGenre }: Props) {
   }
 
   const isEditing = editingId !== null
+
+  const displayed = sortCol
+    ? [...genre.shipTypes].sort((a, b) => {
+        const dir = sortDir === 'asc' ? 1 : -1
+        if (sortCol === 'name') return a.name.localeCompare(b.name) * dir
+        return (a.costPerShip - b.costPerShip) * dir
+      })
+    : genre.shipTypes
+
+  function sortIndicator(col: SortCol) {
+    if (sortCol !== col) return <span className="ml-1 text-gray-600">⇅</span>
+    return <span className="ml-1 text-blue-400">{sortDir === 'asc' ? '▲' : '▼'}</span>
+  }
 
   return (
     <div>
@@ -130,17 +172,50 @@ export default function ShipTypeManager({ genre, updateGenre }: Props) {
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left text-gray-400 border-b border-gray-700">
-              <th className="pb-2 font-medium">Name</th>
-              <th className="pb-2 font-medium text-right">Cost / Ship</th>
+              {!sortCol && <th className="pb-2 w-16"></th>}
+              <th
+                className="pb-2 font-medium cursor-pointer select-none hover:text-gray-200"
+                onClick={() => toggleSort('name')}
+              >
+                Name{sortIndicator('name')}
+              </th>
+              <th
+                className="pb-2 font-medium text-right cursor-pointer select-none hover:text-gray-200"
+                onClick={() => toggleSort('cost')}
+              >
+                Cost / Ship{sortIndicator('cost')}
+              </th>
               <th className="pb-2 w-24"></th>
             </tr>
           </thead>
           <tbody>
-            {genre.shipTypes.map(ship => (
+            {displayed.map((ship, i) => (
               <tr
                 key={ship.id}
                 className={`border-b border-gray-800 ${editingId === ship.id ? 'text-blue-300' : ''}`}
               >
+                {!sortCol && (
+                  <td className="py-1.5">
+                    <div className="flex gap-1">
+                      <button
+                        onClick={() => move(ship.id, -1)}
+                        disabled={i === 0}
+                        className="px-1 text-gray-600 hover:text-gray-300 disabled:opacity-20 disabled:cursor-not-allowed text-xs leading-none"
+                        title="Move up"
+                      >
+                        ▲
+                      </button>
+                      <button
+                        onClick={() => move(ship.id, 1)}
+                        disabled={i === displayed.length - 1}
+                        className="px-1 text-gray-600 hover:text-gray-300 disabled:opacity-20 disabled:cursor-not-allowed text-xs leading-none"
+                        title="Move down"
+                      >
+                        ▼
+                      </button>
+                    </div>
+                  </td>
+                )}
                 <td className="py-2.5">
                   <ShipLink name={ship.name} url={ship.url} />
                 </td>
@@ -163,6 +238,14 @@ export default function ShipTypeManager({ genre, updateGenre }: Props) {
             ))}
           </tbody>
         </table>
+      )}
+      {sortCol && (
+        <button
+          onClick={clearSort}
+          className="mt-3 text-xs text-gray-500 hover:text-gray-300 transition-colors"
+        >
+          ✕ Clear sort (restore manual order)
+        </button>
       )}
     </div>
   )

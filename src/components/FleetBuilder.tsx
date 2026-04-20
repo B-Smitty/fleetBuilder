@@ -9,6 +9,8 @@ interface Props {
   updateGenre: (updater: (g: Genre) => Genre) => void
 }
 
+type SortCol = 'name' | 'type' | 'qty' | 'unitCost' | 'subtotal'
+
 export default function FleetBuilder({ genre, updateGenre }: Props) {
   const [activeFleetId, setActiveFleetId] = useState<string | null>(
     () => genre.fleets[0]?.id ?? null,
@@ -18,9 +20,24 @@ export default function FleetBuilder({ genre, updateGenre }: Props) {
   const [addType, setAddType] = useState<'ship' | 'unit'>('unit')
   const [addRefId, setAddRefId] = useState('')
   const [addQty, setAddQty] = useState(1)
+  const [sortCol, setSortCol] = useState<SortCol | null>(null)
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
 
   const activeFleet: Fleet | null =
     genre.fleets.find(f => f.id === activeFleetId) ?? genre.fleets[0] ?? null
+
+  function toggleSort(col: SortCol) {
+    if (sortCol === col) {
+      setSortDir(d => (d === 'asc' ? 'desc' : 'asc'))
+    } else {
+      setSortCol(col)
+      setSortDir('asc')
+    }
+  }
+
+  function clearSort() {
+    setSortCol(null)
+  }
 
   function newFleet() {
     const fleet: Fleet = {
@@ -83,6 +100,18 @@ export default function FleetBuilder({ genre, updateGenre }: Props) {
     updateFleetEntries(entries =>
       entries.map(e => (e.id === entryId ? { ...e, quantity: qty } : e)),
     )
+  }
+
+  function moveEntry(entryId: string, delta: -1 | 1) {
+    clearSort()
+    updateFleetEntries(entries => {
+      const arr = [...entries]
+      const idx = arr.findIndex(e => e.id === entryId)
+      const next = idx + delta
+      if (next < 0 || next >= arr.length) return entries
+      ;[arr[idx], arr[next]] = [arr[next], arr[idx]]
+      return arr
+    })
   }
 
   function entryCost(entry: FleetEntry): number {
@@ -156,10 +185,39 @@ export default function FleetBuilder({ genre, updateGenre }: Props) {
   }
 
   const options = addType === 'ship' ? genre.shipTypes : genre.unitTypes
-  const entries = activeFleet?.entries ?? []
+  const rawEntries = activeFleet?.entries ?? []
+
+  const entries = sortCol
+    ? [...rawEntries].sort((a, b) => {
+        const dir = sortDir === 'asc' ? 1 : -1
+        if (sortCol === 'name') return entryName(a).localeCompare(entryName(b)) * dir
+        if (sortCol === 'type') return a.type.localeCompare(b.type) * dir
+        if (sortCol === 'qty') return (a.quantity - b.quantity) * dir
+        const ca = entryCost(a), cb = entryCost(b)
+        if (sortCol === 'unitCost') return (ca - cb) * dir
+        return (ca * a.quantity - cb * b.quantity) * dir
+      })
+    : rawEntries
+
   const totalCost = activeFleet
     ? fleetTotalCost(activeFleet.entries, genre.shipTypes, genre.unitTypes)
     : 0
+
+  function sortIndicator(col: SortCol) {
+    if (sortCol !== col) return <span className="ml-1 text-gray-600">⇅</span>
+    return <span className="ml-1 text-blue-400">{sortDir === 'asc' ? '▲' : '▼'}</span>
+  }
+
+  function SortTh({ col, children, className = '' }: { col: SortCol; children: React.ReactNode; className?: string }) {
+    return (
+      <th
+        className={`pb-2 font-medium cursor-pointer select-none hover:text-gray-200 ${className}`}
+        onClick={() => toggleSort(col)}
+      >
+        {children}{sortIndicator(col)}
+      </th>
+    )
+  }
 
   return (
     <div>
@@ -301,70 +359,104 @@ export default function FleetBuilder({ genre, updateGenre }: Props) {
               This fleet is empty. Add unit types or ships above.
             </p>
           ) : (
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="text-left text-gray-400 border-b border-gray-700">
-                  <th className="pb-2 font-medium">Entry</th>
-                  <th className="pb-2 font-medium text-center w-24">Qty</th>
-                  <th className="pb-2 font-medium text-right">Unit Cost</th>
-                  <th className="pb-2 font-medium text-right">Subtotal</th>
-                  <th className="pb-2 w-8"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {entries.map(entry => {
-                  const cost = entryCost(entry)
-                  return (
-                    <tr key={entry.id} className="border-b border-gray-800">
-                      <td className="py-2.5">
-                        <span className="font-medium">
-                          {entry.type === 'ship'
-                            ? <ShipLink name={entryName(entry)} url={genre.shipTypes.find(s => s.id === entry.refId)?.url} />
-                            : entryName(entry)}
-                        </span>
-                        <span className="ml-2 text-xs text-gray-500 uppercase tracking-wide">
+            <>
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="text-left text-gray-400 border-b border-gray-700">
+                    {!sortCol && <th className="pb-2 w-16"></th>}
+                    <SortTh col="name">Entry</SortTh>
+                    <SortTh col="type" className="w-20">Type</SortTh>
+                    <SortTh col="qty" className="text-center w-24">Qty</SortTh>
+                    <SortTh col="unitCost" className="text-right">Unit Cost</SortTh>
+                    <SortTh col="subtotal" className="text-right">Subtotal</SortTh>
+                    <th className="pb-2 w-8"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {entries.map((entry, i) => {
+                    const cost = entryCost(entry)
+                    return (
+                      <tr key={entry.id} className="border-b border-gray-800">
+                        {!sortCol && (
+                          <td className="py-1.5">
+                            <div className="flex gap-1">
+                              <button
+                                onClick={() => moveEntry(entry.id, -1)}
+                                disabled={i === 0}
+                                className="px-1 text-gray-600 hover:text-gray-300 disabled:opacity-20 disabled:cursor-not-allowed text-xs leading-none"
+                                title="Move up"
+                              >
+                                ▲
+                              </button>
+                              <button
+                                onClick={() => moveEntry(entry.id, 1)}
+                                disabled={i === entries.length - 1}
+                                className="px-1 text-gray-600 hover:text-gray-300 disabled:opacity-20 disabled:cursor-not-allowed text-xs leading-none"
+                                title="Move down"
+                              >
+                                ▼
+                              </button>
+                            </div>
+                          </td>
+                        )}
+                        <td className="py-2.5">
+                          <span className="font-medium">
+                            {entry.type === 'ship'
+                              ? <ShipLink name={entryName(entry)} url={genre.shipTypes.find(s => s.id === entry.refId)?.url} />
+                              : entryName(entry)}
+                          </span>
+                        </td>
+                        <td className="py-2.5 text-xs text-gray-500 uppercase tracking-wide">
                           {entry.type}
-                        </span>
-                      </td>
-                      <td className="py-2.5 text-center">
-                        <input
-                          type="number"
-                          min={1}
-                          value={entry.quantity}
-                          onChange={e => updateQty(entry.id, Number(e.target.value))}
-                          className="w-16 bg-gray-700 border border-gray-600 rounded px-2 py-1 text-xs text-right font-mono"
-                        />
-                      </td>
-                      <td className="py-2.5 text-right font-mono text-gray-300">
-                        {cost.toLocaleString()}
-                      </td>
-                      <td className="py-2.5 text-right font-mono">
-                        {(cost * entry.quantity).toLocaleString()}
-                      </td>
-                      <td className="py-2.5 text-right">
-                        <button
-                          onClick={() => removeEntry(entry.id)}
-                          className="text-gray-500 hover:text-red-400 transition-colors"
-                        >
-                          ✕
-                        </button>
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-              <tfoot>
-                <tr className="border-t-2 border-gray-600">
-                  <td colSpan={3} className="pt-4 pb-1 text-gray-300 font-semibold">
-                    Total Fleet Cost
-                  </td>
-                  <td className="pt-4 pb-1 text-right font-mono font-bold text-blue-400 text-xl">
-                    {totalCost.toLocaleString()}
-                  </td>
-                  <td></td>
-                </tr>
-              </tfoot>
-            </table>
+                        </td>
+                        <td className="py-2.5 text-center">
+                          <input
+                            type="number"
+                            min={1}
+                            value={entry.quantity}
+                            onChange={e => updateQty(entry.id, Number(e.target.value))}
+                            className="w-16 bg-gray-700 border border-gray-600 rounded px-2 py-1 text-xs text-right font-mono"
+                          />
+                        </td>
+                        <td className="py-2.5 text-right font-mono text-gray-300">
+                          {cost.toLocaleString()}
+                        </td>
+                        <td className="py-2.5 text-right font-mono">
+                          {(cost * entry.quantity).toLocaleString()}
+                        </td>
+                        <td className="py-2.5 text-right">
+                          <button
+                            onClick={() => removeEntry(entry.id)}
+                            className="text-gray-500 hover:text-red-400 transition-colors"
+                          >
+                            ✕
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+                <tfoot>
+                  <tr className="border-t-2 border-gray-600">
+                    <td colSpan={sortCol ? 4 : 5} className="pt-4 pb-1 text-gray-300 font-semibold">
+                      Total Fleet Cost
+                    </td>
+                    <td className="pt-4 pb-1 text-right font-mono font-bold text-blue-400 text-xl">
+                      {totalCost.toLocaleString()}
+                    </td>
+                    <td></td>
+                  </tr>
+                </tfoot>
+              </table>
+              {sortCol && (
+                <button
+                  onClick={clearSort}
+                  className="mt-3 text-xs text-gray-500 hover:text-gray-300 transition-colors"
+                >
+                  ✕ Clear sort (restore manual order)
+                </button>
+              )}
+            </>
           )}
         </>
       )}
