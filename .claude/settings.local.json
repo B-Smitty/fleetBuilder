@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Users/brent/AppData/Local/Programs/**)",
+      "Bash(cmd //c \"where node\")",
+      "Bash(cmd //c \"where node 2>&1 && where npm 2>&1\")",
+      "Bash(cmd //c \"where node && node --version && where npm && npm --version\")",
+      "Bash('/c/Program Files/nodejs/node.exe' --version)",
+      "Bash('/c/Program Files/nodejs/npm.cmd' --version)",
+      "Bash(\"/c/Program Files/nodejs/npm.cmd\" create vite@latest . -- --template react-ts)",
+      "Bash('/c/Program Files/nodejs/npm.cmd' create vite@latest . -- --template react-ts)",
+      "Bash('/c/Program Files/nodejs/npm.cmd' create vite@latest . -- --template react-ts --yes)",
+      "Bash('/c/Program Files/nodejs/npm.cmd' install)",
+      "Bash('/c/Program Files/nodejs/npm.cmd' run dev)"
+    ]
+  }
+}
