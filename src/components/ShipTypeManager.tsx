@@ -313,7 +313,7 @@ export default function ShipTypeManager({ genre, updateGenre }: Props) {
               autoFocus
             />
           </div>
-          <div className="w-36">
+          <div className="w-44">
             <label className="block text-xs text-gray-400 mb-1">Cost per Ship</label>
             <input
               className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-sm font-mono focus:outline-none focus:border-blue-500"

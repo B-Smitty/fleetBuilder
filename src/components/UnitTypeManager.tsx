@@ -255,7 +255,7 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
                     min={1}
                     value={comp.quantity}
                     onChange={e => updateComponentQty(i, Number(e.target.value))}
-                    className="w-16 bg-gray-600 border border-gray-500 rounded px-2 py-1 text-xs text-right"
+                    className="w-24 bg-gray-600 border border-gray-500 rounded px-2 py-1 text-xs text-right"
                   />
                   <button
                     onClick={() => removeComponent(i)}
@@ -299,7 +299,7 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
               min={1}
               value={newComp.quantity}
               onChange={e => setNewComp(c => ({ ...c, quantity: Number(e.target.value) }))}
-              className="w-16 bg-gray-700 border border-gray-600 rounded px-2 py-1.5 text-xs text-right"
+              className="w-24 bg-gray-700 border border-gray-600 rounded px-2 py-1.5 text-xs text-right"
             />
             <button
               onClick={addComponent}

@@ -404,7 +404,7 @@ export default function FleetBuilder({ genre, updateGenre }: Props) {
                 min={1}
                 value={addQty}
                 onChange={e => setAddQty(Number(e.target.value))}
-                className="w-20 bg-gray-700 border border-gray-600 rounded px-2 py-2 text-sm text-right font-mono"
+                className="w-24 bg-gray-700 border border-gray-600 rounded px-2 py-2 text-sm text-right font-mono"
               />
               <button
                 onClick={addToFleet}
@@ -478,7 +478,7 @@ export default function FleetBuilder({ genre, updateGenre }: Props) {
                             min={1}
                             value={entry.quantity}
                             onChange={e => updateQty(entry.id, Number(e.target.value))}
-                            className="w-16 bg-gray-700 border border-gray-600 rounded px-2 py-1 text-xs text-right font-mono"
+                            className="w-24 bg-gray-700 border border-gray-600 rounded px-2 py-1 text-xs text-right font-mono"
                           />
                         </td>
                         <td className="py-2.5 text-right font-mono text-gray-300">
