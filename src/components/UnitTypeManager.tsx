@@ -1,8 +1,11 @@
 import { useState, useRef } from 'react'
+import * as yaml from 'js-yaml'
 import type { Genre, UnitType, UnitComponent } from '../types'
 import { nanoid } from '../utils'
 import { unitTypeCost, reachableUnitIds } from '../costs'
 import ShipLink from './ShipLink'
+import MarkdownEditor from './MarkdownEditor'
+import ReactMarkdown from 'react-markdown'
 
 interface Props {
   genre: Genre
@@ -11,6 +14,7 @@ interface Props {
 
 interface UnitForm {
   name: string
+  description: string
   components: UnitComponent[]
 }
 
@@ -22,13 +26,15 @@ interface NewComp {
 
 type SortCol = 'name' | 'cost'
 
-const blankForm = (): UnitForm => ({ name: '', components: [] })
+const blankForm = (): UnitForm => ({ name: '', description: '', components: [] })
 const blankComp = (refId = ''): NewComp => ({ type: 'ship', refId, quantity: 1 })
 
 export default function UnitTypeManager({ genre, updateGenre }: Props) {
   const [form, setForm] = useState<UnitForm>(blankForm())
   const [editingId, setEditingId] = useState<string | null>(null)
   const formRef = useRef<HTMLDivElement>(null)
+  const importRef = useRef<HTMLInputElement>(null)
+  const [importMsg, setImportMsg] = useState<{ text: string; ok: boolean } | null>(null)
   const [newComp, setNewComp] = useState<NewComp>(() => blankComp(genre.shipTypes[0]?.id ?? ''))
   const [sortCol, setSortCol] = useState<SortCol | null>(null)
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
@@ -60,7 +66,7 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
 
   function startEdit(ut: UnitType) {
     setEditingId(ut.id)
-    setForm({ name: ut.name, components: [...ut.components] })
+    setForm({ name: ut.name, description: ut.description ?? '', components: [...ut.components] })
     setNewComp(blankComp(genre.shipTypes[0]?.id ?? ''))
     setTimeout(() => formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0)
   }
@@ -85,7 +91,7 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
         ...g,
         unitTypes: g.unitTypes.map(ut =>
           ut.id === editingId
-            ? { ...ut, name: form.name.trim(), components: form.components }
+            ? { ...ut, name: form.name.trim(), description: form.description.trim() || undefined, components: form.components }
             : ut,
         ),
       }))
@@ -93,7 +99,7 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
     } else {
       updateGenre(g => ({
         ...g,
-        unitTypes: [...g.unitTypes, { id: nanoid(), name: form.name.trim(), components: form.components }],
+        unitTypes: [...g.unitTypes, { id: nanoid(), name: form.name.trim(), description: form.description.trim() || undefined, components: form.components }],
       }))
       setForm(blankForm())
       setNewComp(blankComp(genre.shipTypes[0]?.id ?? ''))
@@ -224,6 +230,15 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
               Cancel
             </button>
           )}
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-xs text-gray-400 mb-1">Description <span className="text-gray-600">(optional, Markdown)</span></label>
+          <MarkdownEditor
+            value={form.description}
+            onChange={v => setForm(f => ({ ...f, description: v }))}
+            minRows={3}
+          />
         </div>
 
         <div>
@@ -379,6 +394,14 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
                         </button>
                       </div>
                     </div>
+                    {ut.description && (
+                      <div className="mt-2 prose prose-invert prose-sm max-w-none
+                        prose-p:my-0.5 prose-headings:my-1 prose-ul:my-0.5 prose-ol:my-0.5
+                        prose-li:my-0 prose-pre:bg-gray-900 prose-code:bg-gray-900
+                        prose-code:px-1 prose-code:rounded prose-a:text-blue-400">
+                        <ReactMarkdown>{ut.description}</ReactMarkdown>
+                      </div>
+                    )}
                     {ut.components.length > 0 && (
                       <div className="mt-2 space-y-0.5 pl-3 border-l border-gray-700">
                         {ut.components.map((comp, ci) => (

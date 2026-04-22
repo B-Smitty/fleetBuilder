@@ -15,6 +15,7 @@ export interface UnitComponent {
 export interface UnitType {
   id: string
   name: string
+  description?: string
   components: UnitComponent[]
 }
 

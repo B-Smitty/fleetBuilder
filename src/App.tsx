@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import type { AppState, Genre } from './types'
 import { loadState, saveState } from './storage'
 import { nanoid } from './utils'
+import { exportGenreYaml, exportGenreJson, importIntoGenre, summariseImport } from './importExport'
 import ShipTypeManager from './components/ShipTypeManager'
 import UnitTypeManager from './components/UnitTypeManager'
 import FleetBuilder from './components/FleetBuilder'
@@ -19,6 +20,8 @@ export default function App() {
   const [tab, setTab] = useState<Tab>('fleet')
   const [genreRenaming, setGenreRenaming] = useState(false)
   const [genreRenameValue, setGenreRenameValue] = useState('')
+  const [importMsg, setImportMsg] = useState<{ text: string; ok: boolean } | null>(null)
+  const importRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => { saveState(state) }, [state])
 
@@ -65,6 +68,30 @@ export default function App() {
       ),
     }))
     setGenreRenaming(false)
+  }
+
+  function handleImport(e: React.ChangeEvent<HTMLInputElement>) {
+    setImportMsg(null)
+    const file = e.target.files?.[0]
+    if (!file || !activeGenre) return
+    e.target.value = ''
+
+    const reader = new FileReader()
+    reader.onload = ev => {
+      try {
+        const text = (ev.target?.result as string) ?? ''
+        const { genre: updated, summary } = importIntoGenre(activeGenre, text, file.name)
+        setState(s => ({
+          ...s,
+          genres: s.genres.map(g => g.id === activeGenre.id ? updated : g),
+        }))
+        const { message, ok } = summariseImport(summary)
+        setImportMsg({ text: message, ok })
+      } catch (err) {
+        setImportMsg({ text: `Import failed: ${err instanceof Error ? err.message : String(err)}`, ok: false })
+      }
+    }
+    reader.readAsText(file)
   }
 
   return (
@@ -127,15 +154,73 @@ export default function App() {
             >
               Delete
             </button>
-            <button
-              onClick={newGenre}
-              className="ml-auto px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs font-medium transition-colors"
-            >
-              + New Genre
-            </button>
+
+            <div className="ml-auto flex items-center gap-2">
+              {/* Export */}
+              <span className="text-xs text-gray-600">Export:</span>
+              <button
+                onClick={() => activeGenre && exportGenreYaml(activeGenre)}
+                disabled={!activeGenre}
+                className="px-3 py-1 bg-gray-700 hover:bg-gray-600 disabled:opacity-40 disabled:cursor-not-allowed rounded text-xs transition-colors"
+                title="Export entire genre as YAML"
+              >
+                YAML
+              </button>
+              <button
+                onClick={() => activeGenre && exportGenreJson(activeGenre)}
+                disabled={!activeGenre}
+                className="px-3 py-1 bg-gray-700 hover:bg-gray-600 disabled:opacity-40 disabled:cursor-not-allowed rounded text-xs transition-colors"
+                title="Export entire genre as JSON"
+              >
+                JSON
+              </button>
+
+              {/* Import */}
+              <button
+                onClick={() => { setImportMsg(null); importRef.current?.click() }}
+                disabled={!activeGenre}
+                className="px-3 py-1 bg-gray-700 hover:bg-gray-600 disabled:opacity-40 disabled:cursor-not-allowed rounded text-xs transition-colors"
+                title="Import ships, units, and fleets from YAML or JSON"
+              >
+                Import
+              </button>
+              <input
+                ref={importRef}
+                type="file"
+                accept=".yaml,.yml,.json"
+                className="hidden"
+                onChange={handleImport}
+              />
+
+              <div className="w-px h-4 bg-gray-700 mx-1" />
+
+              <button
+                onClick={newGenre}
+                className="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs font-medium transition-colors"
+              >
+                + New Genre
+              </button>
+            </div>
           </>
         )}
       </div>
+
+      {/* Import feedback */}
+      {importMsg && (
+        <div className={`px-6 py-2 text-xs border-b ${
+          importMsg.ok
+            ? 'bg-green-900/30 border-green-800 text-green-300'
+            : 'bg-amber-900/30 border-amber-800 text-amber-300'
+        }`}>
+          {importMsg.text}
+          <button
+            onClick={() => setImportMsg(null)}
+            className="ml-3 opacity-60 hover:opacity-100 transition-opacity"
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
       {/* Tab bar */}
       <div className="bg-gray-800 border-b border-gray-700">
