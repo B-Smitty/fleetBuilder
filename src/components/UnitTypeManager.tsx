@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react'
-import * as yaml from 'js-yaml'
 import type { Genre, UnitType, UnitComponent } from '../types'
 import { nanoid } from '../utils'
 import { unitTypeCost, reachableUnitIds } from '../costs'
@@ -33,8 +32,6 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
   const [form, setForm] = useState<UnitForm>(blankForm())
   const [editingId, setEditingId] = useState<string | null>(null)
   const formRef = useRef<HTMLDivElement>(null)
-  const importRef = useRef<HTMLInputElement>(null)
-  const [importMsg, setImportMsg] = useState<{ text: string; ok: boolean } | null>(null)
   const [newComp, setNewComp] = useState<NewComp>(() => blankComp(genre.shipTypes[0]?.id ?? ''))
   const [sortCol, setSortCol] = useState<SortCol | null>(null)
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
