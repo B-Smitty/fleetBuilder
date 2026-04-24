@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import type { Genre, UnitType, UnitComponent } from '../types'
 import { nanoid } from '../utils'
 import { unitTypeCost, reachableUnitIds } from '../costs'
@@ -9,6 +9,8 @@ import ReactMarkdown from 'react-markdown'
 interface Props {
   genre: Genre
   updateGenre: (updater: (g: Genre) => Genre) => void
+  pendingEditUnitId?: string | null
+  onClearPending?: () => void
 }
 
 interface UnitForm {
@@ -28,7 +30,7 @@ type SortCol = 'name' | 'cost'
 const blankForm = (): UnitForm => ({ name: '', description: '', components: [] })
 const blankComp = (refId = ''): NewComp => ({ type: 'ship', refId, quantity: 1 })
 
-export default function UnitTypeManager({ genre, updateGenre }: Props) {
+export default function UnitTypeManager({ genre, updateGenre, pendingEditUnitId, onClearPending }: Props) {
   const [form, setForm] = useState<UnitForm>(blankForm())
   const [editingId, setEditingId] = useState<string | null>(null)
   const formRef = useRef<HTMLDivElement>(null)
@@ -73,6 +75,14 @@ export default function UnitTypeManager({ genre, updateGenre }: Props) {
     setForm(blankForm())
     setNewComp(blankComp(genre.shipTypes[0]?.id ?? ''))
   }
+
+  useEffect(() => {
+    if (!pendingEditUnitId) return
+    const ut = genre.unitTypes.find(u => u.id === pendingEditUnitId)
+    if (ut) startEdit(ut)
+    onClearPending?.()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pendingEditUnitId])
 
   function save() {
     if (!form.name.trim()) return

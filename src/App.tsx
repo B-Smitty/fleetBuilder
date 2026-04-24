@@ -21,7 +21,13 @@ export default function App() {
   const [genreRenaming, setGenreRenaming] = useState(false)
   const [genreRenameValue, setGenreRenameValue] = useState('')
   const [importMsg, setImportMsg] = useState<{ text: string; ok: boolean } | null>(null)
+  const [pendingEditUnitId, setPendingEditUnitId] = useState<string | null>(null)
   const importRef = useRef<HTMLInputElement>(null)
+
+  function navigateToUnit(unitId: string) {
+    setPendingEditUnitId(unitId)
+    setTab('units')
+  }
 
   useEffect(() => { saveState(state) }, [state])
 
@@ -256,8 +262,8 @@ export default function App() {
           </div>
         ) : (
           <>
-            {tab === 'fleet' && <FleetBuilder genre={activeGenre} updateGenre={updateGenre} />}
-            {tab === 'units' && <UnitTypeManager genre={activeGenre} updateGenre={updateGenre} />}
+            {tab === 'fleet' && <FleetBuilder genre={activeGenre} updateGenre={updateGenre} onEditUnit={navigateToUnit} />}
+            {tab === 'units' && <UnitTypeManager genre={activeGenre} updateGenre={updateGenre} pendingEditUnitId={pendingEditUnitId} onClearPending={() => setPendingEditUnitId(null)} />}
             {tab === 'ships' && <ShipTypeManager genre={activeGenre} updateGenre={updateGenre} />}
           </>
         )}

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
 import type { Genre, Fleet, FleetEntry } from '../types'
 import { nanoid } from '../utils'
 import { shipTypeCost, unitTypeCost, fleetTotalCost } from '../costs'
@@ -7,11 +7,12 @@ import ShipLink from './ShipLink'
 interface Props {
   genre: Genre
   updateGenre: (updater: (g: Genre) => Genre) => void
+  onEditUnit: (unitId: string) => void
 }
 
 type SortCol = 'name' | 'type' | 'qty' | 'unitCost' | 'subtotal'
 
-export default function FleetBuilder({ genre, updateGenre }: Props) {
+export default function FleetBuilder({ genre, updateGenre, onEditUnit }: Props) {
   const [activeFleetId, setActiveFleetId] = useState<string | null>(
     () => genre.fleets[0]?.id ?? null,
   )
@@ -22,9 +23,19 @@ export default function FleetBuilder({ genre, updateGenre }: Props) {
   const [addQty, setAddQty] = useState(1)
   const [sortCol, setSortCol] = useState<SortCol | null>(null)
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
+  const [expandedEntries, setExpandedEntries] = useState<Set<string>>(new Set())
 
   const activeFleet: Fleet | null =
     genre.fleets.find(f => f.id === activeFleetId) ?? genre.fleets[0] ?? null
+
+  function toggleExpand(entryId: string) {
+    setExpandedEntries(prev => {
+      const next = new Set(prev)
+      if (next.has(entryId)) next.delete(entryId)
+      else next.add(entryId)
+      return next
+    })
+  }
 
   function toggleSort(col: SortCol) {
     if (sortCol === col) {
@@ -263,6 +274,60 @@ export default function FleetBuilder({ genre, updateGenre }: Props) {
     return <span className="ml-1 text-blue-400">{sortDir === 'asc' ? '▲' : '▼'}</span>
   }
 
+  function entryDetailContent(entry: FleetEntry) {
+    if (entry.type === 'ship') {
+      const ship = genre.shipTypes.find(s => s.id === entry.refId)
+      return (
+        <div className="py-2 px-3 text-xs text-gray-400 space-y-0.5">
+          {ship?.shipClass && <div><span className="text-gray-500">Class:</span> {ship.shipClass}</div>}
+          {ship?.url && (
+            <div>
+              <span className="text-gray-500">URL:</span>{' '}
+              <a href={ship.url} target="_blank" rel="noreferrer" className="text-blue-400 hover:underline truncate">
+                {ship.url}
+              </a>
+            </div>
+          )}
+          {!ship?.shipClass && !ship?.url && (
+            <span className="text-gray-600 italic">No additional details.</span>
+          )}
+        </div>
+      )
+    }
+    const ut = genre.unitTypes.find(u => u.id === entry.refId)
+    if (!ut) return <div className="py-2 px-3 text-xs text-gray-600 italic">Unit type deleted.</div>
+    return (
+      <div className="py-2 px-3 text-xs">
+        <div className="flex items-center justify-between mb-1.5">
+          <span className="text-gray-500 uppercase tracking-wide">Components</span>
+          <button
+            onClick={() => onEditUnit(entry.refId)}
+            className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
+          >
+            Edit type →
+          </button>
+        </div>
+        {ut.components.length === 0 ? (
+          <span className="text-gray-600 italic">No components.</span>
+        ) : (
+          <div className="space-y-0.5 pl-2 border-l border-gray-700">
+            {ut.components.map((comp, i) => {
+              const ship = comp.type === 'ship' ? genre.shipTypes.find(s => s.id === comp.refId) : null
+              const name = ship?.name ?? (genre.unitTypes.find(u => u.id === comp.refId)?.name ?? '(deleted)')
+              const label = ship ? (ship.shipClass ?? 'Ship') : 'Unit'
+              return (
+                <div key={i} className="text-gray-300">
+                  {comp.quantity}× {name}{' '}
+                  <span className="text-gray-600">({label})</span>
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </div>
+    )
+  }
+
   function SortTh({ col, children, className = '' }: { col: SortCol; children: React.ReactNode; className?: string }) {
     return (
       <th
@@ -438,64 +503,84 @@ export default function FleetBuilder({ genre, updateGenre }: Props) {
                 <tbody>
                   {entries.map((entry, i) => {
                     const cost = entryCost(entry)
+                    const isExpanded = expandedEntries.has(entry.id)
+                    const colCount = sortCol ? 6 : 7
                     return (
-                      <tr key={entry.id} className="border-b border-gray-800">
-                        {!sortCol && (
-                          <td className="py-1.5">
-                            <div className="flex gap-1">
+                      <Fragment key={entry.id}>
+                        <tr className="border-b border-gray-800">
+                          {!sortCol && (
+                            <td className="py-1.5">
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => moveEntry(entry.id, -1)}
+                                  disabled={i === 0}
+                                  className="px-1 text-gray-600 hover:text-gray-300 disabled:opacity-20 disabled:cursor-not-allowed text-xs leading-none"
+                                  title="Move up"
+                                >
+                                  ▲
+                                </button>
+                                <button
+                                  onClick={() => moveEntry(entry.id, 1)}
+                                  disabled={i === entries.length - 1}
+                                  className="px-1 text-gray-600 hover:text-gray-300 disabled:opacity-20 disabled:cursor-not-allowed text-xs leading-none"
+                                  title="Move down"
+                                >
+                                  ▼
+                                </button>
+                              </div>
+                            </td>
+                          )}
+                          <td className="py-2.5">
+                            <div className="flex items-center gap-1.5">
                               <button
-                                onClick={() => moveEntry(entry.id, -1)}
-                                disabled={i === 0}
-                                className="px-1 text-gray-600 hover:text-gray-300 disabled:opacity-20 disabled:cursor-not-allowed text-xs leading-none"
-                                title="Move up"
+                                onClick={() => toggleExpand(entry.id)}
+                                className="text-gray-500 hover:text-gray-300 transition-colors text-xs w-3 shrink-0"
+                                title={isExpanded ? 'Collapse' : 'Expand'}
                               >
-                                ▲
+                                {isExpanded ? '▼' : '▶'}
                               </button>
-                              <button
-                                onClick={() => moveEntry(entry.id, 1)}
-                                disabled={i === entries.length - 1}
-                                className="px-1 text-gray-600 hover:text-gray-300 disabled:opacity-20 disabled:cursor-not-allowed text-xs leading-none"
-                                title="Move down"
-                              >
-                                ▼
-                              </button>
+                              <span className="font-medium">
+                                {entry.type === 'ship'
+                                  ? <ShipLink name={entryName(entry)} url={genre.shipTypes.find(s => s.id === entry.refId)?.url} />
+                                  : entryName(entry)}
+                              </span>
                             </div>
                           </td>
+                          <td className="py-2.5 text-xs text-gray-500 uppercase tracking-wide">
+                            {entry.type}
+                          </td>
+                          <td className="py-2.5 text-center">
+                            <input
+                              type="number"
+                              min={1}
+                              value={entry.quantity}
+                              onChange={e => updateQty(entry.id, Number(e.target.value))}
+                              className="w-24 bg-gray-700 border border-gray-600 rounded px-2 py-1 text-xs text-right font-mono"
+                            />
+                          </td>
+                          <td className="py-2.5 text-right font-mono text-gray-300">
+                            {cost.toLocaleString()}
+                          </td>
+                          <td className="py-2.5 text-right font-mono">
+                            {(cost * entry.quantity).toLocaleString()}
+                          </td>
+                          <td className="py-2.5 text-right">
+                            <button
+                              onClick={() => removeEntry(entry.id)}
+                              className="text-gray-500 hover:text-red-400 transition-colors"
+                            >
+                              ✕
+                            </button>
+                          </td>
+                        </tr>
+                        {isExpanded && (
+                          <tr className="border-b border-gray-800 bg-gray-900/40">
+                            <td colSpan={colCount} className="pl-8 pr-4">
+                              {entryDetailContent(entry)}
+                            </td>
+                          </tr>
                         )}
-                        <td className="py-2.5">
-                          <span className="font-medium">
-                            {entry.type === 'ship'
-                              ? <ShipLink name={entryName(entry)} url={genre.shipTypes.find(s => s.id === entry.refId)?.url} />
-                              : entryName(entry)}
-                          </span>
-                        </td>
-                        <td className="py-2.5 text-xs text-gray-500 uppercase tracking-wide">
-                          {entry.type}
-                        </td>
-                        <td className="py-2.5 text-center">
-                          <input
-                            type="number"
-                            min={1}
-                            value={entry.quantity}
-                            onChange={e => updateQty(entry.id, Number(e.target.value))}
-                            className="w-24 bg-gray-700 border border-gray-600 rounded px-2 py-1 text-xs text-right font-mono"
-                          />
-                        </td>
-                        <td className="py-2.5 text-right font-mono text-gray-300">
-                          {cost.toLocaleString()}
-                        </td>
-                        <td className="py-2.5 text-right font-mono">
-                          {(cost * entry.quantity).toLocaleString()}
-                        </td>
-                        <td className="py-2.5 text-right">
-                          <button
-                            onClick={() => removeEntry(entry.id)}
-                            className="text-gray-500 hover:text-red-400 transition-colors"
-                          >
-                            ✕
-                          </button>
-                        </td>
-                      </tr>
+                      </Fragment>
                     )
                   })}
                 </tbody>

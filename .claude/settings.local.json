@@ -19,7 +19,8 @@
       "Bash(python3 -c ' *)",
       "Bash(echo \"exit: $?\")",
       "Bash(npm install *)",
-      "Bash(npm list *)"
+      "Bash(npm list *)",
+      "Bash(npx tsc *)"
     ]
   }
 }
