@@ -1,0 +1,378 @@
+ships:
+# Republic Starfighters
+- name: V-19 Torrent starfighter
+  cost: 75000
+  class: Starfighter
+  url: https://starwars.fandom.com/wiki/V-19_Torrent_starfighter
+- name: Alpha-3 Nimbus-class V-wing starfighter
+  cost: 120000
+  class: Starfighter
+  url: https://starwars.fandom.com/wiki/Alpha-3_Nimbus-class_V-wing_starfighter
+- name: Eta-2 Actis-class light interceptor
+  cost: 140000
+  class: Jedi interceptor
+  url: https://starwars.fandom.com/wiki/Eta-2_Actis-class_light_interceptor
+- name: Delta-7 Aethersprite-class light interceptor
+  cost: 145000
+  class: Jedi starfighter
+  url: https://starwars.fandom.com/wiki/Delta-7_Aethersprite-class_light_interceptor
+- name: Aggressive ReConnaissance-170 starfighter
+  cost: 180000
+  class: Heavy starfighter
+  url: https://starwars.fandom.com/wiki/Aggressive_ReConnaissance-170_starfighter
+- name: BTL-B Y-wing starfighter
+  cost: 150000
+  class: Fighter-bomber
+  url: https://starwars.fandom.com/wiki/BTL-B_Y-wing_starfighter
+- name: Z-95 Headhunter
+  cost: 80000
+  class: Starfighter
+  url: https://starwars.fandom.com/wiki/Z-95_Headhunter
+
+# Republic Capital Ships
+- name: Venator-class Star Destroyer
+  cost: 59000000
+  class: Star Destroyer
+  url: https://starwars.fandom.com/wiki/Venator-class_Star_Destroyer
+- name: Acclamator-class assault ship
+  cost: 110000000
+  class: Assault ship
+  url: https://starwars.fandom.com/wiki/Acclamator-class_assault_ship
+- name: Maelstrom-class battle cruiser
+  cost: 158000000
+  class: Battlecruiser
+  url: https://starwars.fandom.com/wiki/Maelstrom-class_battle_cruiser
+- name: Pelta-class frigate
+  cost: 9000000
+  class: Medical frigate / Assault ship
+  url: https://starwars.fandom.com/wiki/Pelta-class_frigate
+- name: Arquitens-class light cruiser
+  cost: 5000000
+  class: Light cruiser
+  url: https://starwars.fandom.com/wiki/Arquitens-class_light_cruiser
+- name: Consular-class cruiser
+  cost: 4000000
+  class: Diplomatic cruiser
+  url: https://starwars.fandom.com/wiki/Consular-class_cruiser
+- name: CR90 corvette
+  cost: 3500000
+  class: Corvette
+  url: https://starwars.fandom.com/wiki/CR90_corvette
+- name: DP20 frigate
+  cost: 4800000
+  class: Frigate
+  url: https://starwars.fandom.com/wiki/DP20_frigate
+
+# Republic Transports and Support
+- name: LAAT/i gunship
+  cost: 175000
+  class: Gunship
+  url: https://starwars.fandom.com/wiki/LAAT/i_gunship
+- name: LAAT/c carrier
+  cost: 160000
+  class: Carrier gunship
+  url: https://starwars.fandom.com/wiki/LAAT/c
+- name: Nu-class attack shuttle
+  cost: 85000
+  class: Attack shuttle
+  url: https://starwars.fandom.com/wiki/Nu-class_attack_shuttle
+- name: Theta-class T-2c shuttle
+  cost: 135000
+  class: Shuttle
+  url: https://starwars.fandom.com/wiki/Theta-class_T-2c_shuttle
+- name: GR-75 medium transport
+  cost: 350000
+  class: Medium transport
+  url: https://starwars.fandom.com/wiki/GR-75_medium_transport
+
+# Clone Troopers and Equipment
+- name: Clone Trooper
+  cost: 2500
+  class: Personnel
+  url: https://starwars.fandom.com/wiki/Clone_trooper
+- name: Clone Commander
+  cost: 5000
+  class: Personnel
+  url: https://starwars.fandom.com/wiki/Clone_Commander
+- name: ARC Trooper
+  cost: 7500
+  class: Elite personnel
+  url: https://starwars.fandom.com/wiki/Advanced_Recon_Commando
+- name: Clone Commando
+  cost: 8000
+  class: Special forces
+  url: https://starwars.fandom.com/wiki/Clone_commando
+
+# Walkers and Ground Vehicles  
+- name: All Terrain Tactical Enforcer (AT-TE)
+  cost: 180000
+  class: Walker
+  url: https://starwars.fandom.com/wiki/All_Terrain_Tactical_Enforcer
+- name: All Terrain Recon Transport (AT-RT)
+  cost: 40000
+  class: Walker
+  url: https://starwars.fandom.com/wiki/All_Terrain_Recon_Transport
+- name: All Terrain Open Transport (AT-OT)
+  cost: 125000
+  class: Walker
+  url: https://starwars.fandom.com/wiki/All_Terrain_Open_Transport
+- name: BARC speeder
+  cost: 8000
+  class: Speeder
+  url: https://starwars.fandom.com/wiki/BARC_speeder
+- name: SPHA-T
+  cost: 550000
+  class: Heavy artillery
+  url: https://starwars.fandom.com/wiki/SPHA-T
+- name: ISP speeder
+  cost: 6500
+  class: Speeder
+  url: https://starwars.fandom.com/wiki/Infantry_Support_Platform
+- name: Republic Fighter Tank
+  cost: 95000
+  class: Tank
+  url: https://starwars.fandom.com/wiki/Republic_Fighter_Tank
+- name: HAVw A6 Juggernaut
+  cost: 350000
+  class: Heavy transport
+  url: https://starwars.fandom.com/wiki/HAVw_A6_Juggernaut
+
+units:
+# Fighter Squadrons
+- name: V-19 Squadron
+  components:
+  - type: ship
+    name: V-19 Torrent starfighter
+    quantity: 12
+
+- name: V-wing Squadron
+  components:
+  - type: ship
+    name: Alpha-3 Nimbus-class V-wing starfighter
+    quantity: 12
+
+- name: ARC-170 Squadron
+  components:
+  - type: ship
+    name: Aggressive ReConnaissance-170 starfighter
+    quantity: 12
+
+- name: Y-wing Bomber Squadron
+  components:
+  - type: ship
+    name: BTL-B Y-wing starfighter
+    quantity: 12
+
+- name: Mixed Fighter Wing
+  components:
+  - type: ship
+    name: V-19 Torrent starfighter
+    quantity: 24
+  - type: ship
+    name: Alpha-3 Nimbus-class V-wing starfighter
+    quantity: 12
+  - type: ship
+    name: ARC-170 starfighter
+    quantity: 12
+  - type: ship
+    name: BTL-B Y-wing starfighter
+    quantity: 12
+
+- name: Jedi Strike Squadron
+  components:
+  - type: ship
+    name: Eta-2 Actis-class light interceptor
+    quantity: 4
+  - type: ship
+    name: Delta-7 Aethersprite-class light interceptor
+    quantity: 4
+  - type: ship
+    name: ARC-170 starfighter
+    quantity: 4
+
+# Capital Ship Groups
+- name: Venator Battle Group
+  components:
+  - type: ship
+    name: Venator-class Star Destroyer
+    quantity: 1
+  - type: unit
+    name: Mixed Fighter Wing
+    quantity: 3
+  - type: ship
+    name: Arquitens-class light cruiser
+    quantity: 2
+  - type: ship
+    name: Consular-class cruiser
+    quantity: 2
+  - type: ship
+    name: LAAT/i gunship
+    quantity: 48
+
+- name: Acclamator Assault Group
+  components:
+  - type: ship
+    name: Acclamator-class assault ship
+    quantity: 1
+  - type: ship
+    name: Pelta-class frigate
+    quantity: 1
+  - type: unit
+    name: V-wing Squadron
+    quantity: 2
+  - type: ship
+    name: LAAT/i gunship
+    quantity: 66
+  - type: ship
+    name: LAAT/c carrier
+    quantity: 14
+
+- name: Arquitens Patrol Group
+  components:
+  - type: ship
+    name: Arquitens-class light cruiser
+    quantity: 1
+  - type: unit
+    name: V-wing Squadron
+    quantity: 1
+  - type: ship
+    name: CR90 corvette
+    quantity: 2
+
+# Ground Forces
+- name: Clone Legion
+  components:
+  - type: ship
+    name: Clone Trooper
+    quantity: 9216
+  - type: ship
+    name: Clone Commander
+    quantity: 144
+  - type: ship
+    name: ARC Trooper
+    quantity: 100
+  - type: ship
+    name: AT-TE
+    quantity: 48
+  - type: ship
+    name: AT-RT
+    quantity: 96
+  - type: ship
+    name: BARC speeder
+    quantity: 144
+  - type: ship
+    name: SPHA-T
+    quantity: 12
+
+- name: Clone Battalion
+  components:
+  - type: ship
+    name: Clone Trooper
+    quantity: 576
+  - type: ship
+    name: Clone Commander
+    quantity: 9
+  - type: ship
+    name: ARC Trooper
+    quantity: 6
+  - type: ship
+    name: AT-TE
+    quantity: 3
+  - type: ship
+    name: AT-RT
+    quantity: 6
+  - type: ship
+    name: BARC speeder
+    quantity: 9
+
+- name: Commando Squad
+  components:
+  - type: ship
+    name: Clone Commando
+    quantity: 4
+  - type: ship
+    name: Nu-class attack shuttle
+    quantity: 1
+
+# Logistics and Support
+- name: Medical Unit
+  components:
+  - type: ship
+    name: Pelta-class frigate
+    quantity: 1
+  - type: ship
+    name: GR-75 medium transport
+    quantity: 4
+  - type: ship
+    name: LAAT/i gunship
+    quantity: 8
+
+- name: Invasion Force
+  components:
+  - type: ship
+    name: Acclamator-class assault ship
+    quantity: 2
+  - type: unit
+    name: Clone Legion
+    quantity: 2
+  - type: unit
+    name: Mixed Fighter Wing
+    quantity: 1
+  - type: ship
+    name: LAAT/i gunship
+    quantity: 132
+
+fleets:
+- name: Republic Sector Fleet
+  entries:
+  - type: ship
+    name: Venator-class Star Destroyer
+    quantity: 3
+  - type: ship
+    name: Acclamator-class assault ship
+    quantity: 6
+  - type: ship
+    name: Pelta-class frigate
+    quantity: 4
+  - type: ship
+    name: Arquitens-class light cruiser
+    quantity: 12
+  - type: ship
+    name: Consular-class cruiser
+    quantity: 8
+  - type: unit
+    name: Mixed Fighter Wing
+    quantity: 15
+  - type: unit
+    name: Clone Legion
+    quantity: 12
+
+- name: Republic Attack Fleet
+  entries:
+  - type: unit
+    name: Venator Battle Group
+    quantity: 2
+  - type: unit
+    name: Acclamator Assault Group
+    quantity: 4
+  - type: unit
+    name: Invasion Force
+    quantity: 2
+  - type: ship
+    name: CR90 corvette
+    quantity: 6
+
+- name: Republic Defense Fleet
+  entries:
+  - type: ship
+    name: Venator-class Star Destroyer
+    quantity: 1
+  - type: unit
+    name: Arquitens Patrol Group
+    quantity: 6
+  - type: unit
+    name: V-wing Squadron
+    quantity: 20
+  - type: ship
+    name: Consular-class cruiser
+    quantity: 4

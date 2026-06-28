@@ -1,0 +1,638 @@
+ships:
+  # Starfighters
+  - name: T-65B X-wing starfighter
+    cost: 150000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/T-65B_X-wing_starfighter
+  - name: T-65 X-wing starfighter/Legends
+    cost: 150000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/T-65_X-wing_starfighter/Legends
+  - name: T-70 X-wing starfighter
+    cost: 200000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/T-70_X-wing_starfighter
+  - name: T-85 X-wing starfighter
+    cost: 220000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/T-85_X-wing_starfighter
+  - name: BTL-A4 Y-wing assault starfighter/bomber
+    cost: 80000
+    class: Starfighter / bomber
+    url: https://starwars.fandom.com/wiki/BTL-A4_Y-wing_assault_starfighter/bomber
+  - name: BTL-B Y-wing starfighter/bomber
+    cost: 127000
+    class: Starfighter / bomber
+    url: https://starwars.fandom.com/wiki/BTL-B_Y-wing_starfighter/bomber
+  - name: BTL-S3 Y-wing starfighter
+    cost: 80000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/BTL-S3_Y-wing_starfighter/Legends
+  - name: BTA-NR2 Y-wing starfighter
+    cost: 185000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/BTA-NR2_Y-wing_starfighter
+  - name: RZ-1 A-wing interceptor
+    cost: 175000
+    class: Interceptor
+    url: https://starwars.fandom.com/wiki/RZ-1_A-wing_interceptor
+  - name: A/SF-01 B-wing starfighter
+    cost: 150000
+    class: Heavy assault starfighter
+    url: https://starwars.fandom.com/wiki/A/SF-01_B-wing_starfighter
+  - name: A/SF-01 MK II B-wing starfighter
+    cost: 265000
+    class: Heavy assault starfighter
+    url: https://starwars.fandom.com/wiki/A/SF-01_B-wing_starfighter
+  - name: Z-95 Headhunter
+    cost: 75000
+    class: Multi-role starfighter
+    url: https://starwars.fandom.com/wiki/Z-95_Headhunter
+  - name: Z-95 Headhunter (with hyperdrive)
+    cost: 80000
+    class: Multi-role starfighter
+    url: https://starwars.fandom.com/wiki/Z-95_Headhunter
+  - name: Clone Z-95 starfighter
+    cost: 75000
+    class: Multi-role starfighter
+    url: https://starwars.fandom.com/wiki/Clone_Z-95_starfighter
+  - name: C-wing
+    cost: 130500
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/C-wing
+  - name: E-7 E-wing multi-role starfighter
+    cost: 185000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/E-wing_escort_starfighter
+  - name: BTL-S8 K-wing assault starfighter
+    cost: 250000
+    class: Heavy assault starfighter / bomber
+    url: https://starwars.fandom.com/wiki/BTL-S8_K-wing_assault_starfighter
+  
+  # Capital Ships
+  - name: MC80A Home One Type Heavy Star Cruiser
+    cost: 112000000
+    class: Heavy Star Cruiser
+    url: https://starwars.fandom.com/wiki/MC80A_Home_One_Type_Heavy_Star_Cruiser
+  - name: MC80 Liberty Type Heavy Star Cruiser
+    cost: 104000000
+    class: Heavy Star Cruiser
+    url: https://starwars.fandom.com/wiki/MC80_Liberty_Type_Heavy_Star_Cruiser
+  - name: MC75 Star Cruiser
+    cost: 95000000
+    class: Star Cruiser
+    url: https://starwars.fandom.com/wiki/MC75_Star_Cruiser
+  - name: EF76 Nebulon-B escort frigate
+    cost: 8500000
+    class: Frigate
+    url: https://starwars.fandom.com/wiki/EF76_Nebulon-B_escort_frigate
+  - name: EF76 Nebulon-B escort frigate/Legends
+    cost: 8500000
+    class: Frigate
+    url: https://starwars.fandom.com/wiki/EF76_Nebulon-B_escort_frigate/Legends
+  - name: CR90 corvette
+    cost: 1200000
+    class: Corvette
+    url: https://starwars.fandom.com/wiki/CR90_corvette
+  - name: CR90 corvette/Legends
+    cost: 3500000
+    class: Corvette
+    url: https://starwars.fandom.com/wiki/CR90_corvette/Legends
+  - name: CR70 corvette/Legends
+    cost: 2900000
+    class: Corvette
+    url: https://starwars.fandom.com/wiki/CR70_corvette/Legends
+  - name: DP20 gunship
+    cost: 3200000
+    class: Frigate
+    url: https://starwars.fandom.com/wiki/DP20_gunship
+  - name: DP20 gunship/Legends
+    cost: 4800000
+    class: Frigate / Corvette
+    url: https://starwars.fandom.com/wiki/DP20_gunship/Legends
+  - name: MC30c frigate
+    cost: 9500000
+    class: Frigate
+    url: https://starwars.fandom.com/wiki/MC30c_frigate
+  - name: MC40a light cruiser
+    cost: 15500000
+    class: Light cruiser
+    url: https://starwars.fandom.com/wiki/MC40a_light_cruiser
+  - name: Dreadnaught-class heavy cruiser
+    cost: 7200000
+    class: Heavy cruiser
+    url: https://starwars.fandom.com/wiki/Dreadnought-class_heavy_cruiser
+  - name: Dreadnaught-class heavy cruiser/Legends
+    cost: 7200000
+    class: Heavy cruiser
+    url: https://starwars.fandom.com/wiki/Dreadnaught-class_heavy_cruiser/Legends
+  - name: Hammerhead corvette
+    cost: 1900000
+    class: Corvette
+    url: https://starwars.fandom.com/wiki/Hammerhead_corvette
+  - name: Pelta-class frigate
+    cost: 5200000
+    class: Frigate / medical frigate
+    url: https://starwars.fandom.com/wiki/Pelta-class_frigate
+  - name: Assault Frigate Mark II
+    cost: 18500000
+    class: Frigate
+    url: https://starwars.fandom.com/wiki/Assault_Frigate_Mark_II
+  
+  # Transports and Support Ships
+  - name: GR-75 medium transport
+    cost: 350000
+    class: Medium transport
+    url: https://starwars.fandom.com/wiki/GR-75_medium_transport
+  - name: GR-75 medium transport/Legends
+    cost: 350000
+    class: Medium transport
+    url: https://starwars.fandom.com/wiki/GR-75_medium_transport/Legends
+  - name: UT-60D U-wing starfighter/support craft
+    cost: 180000
+    class: Gunship / transport
+    url: https://starwars.fandom.com/wiki/UT-60D_U-wing_starfighter/support_craft
+  - name: HWK-290 light freighter
+    cost: 120000
+    class: Light freighter
+    url: https://starwars.fandom.com/wiki/HWK-290_light_freighter
+  - name: YT-1300 light freighter
+    cost: 100000
+    class: Light freighter
+    url: https://starwars.fandom.com/wiki/YT-1300_light_freighter
+  - name: YT-2400 light freighter
+    cost: 130000
+    class: Light freighter
+    url: https://starwars.fandom.com/wiki/YT-2400_light_freighter
+  - name: Braha'tok-class gunship
+    cost: 1400000
+    class: Gunship
+    url: https://starwars.fandom.com/wiki/Braha%27tok-class_gunship
+  - name: Quasar Fire-class cruiser-carrier
+    cost: 1750000
+    class: Cruiser / light carrier
+    url: https://starwars.fandom.com/wiki/Quasar_Fire-class_cruiser-carrier
+  - name: Marauder-class Assault Corvette
+    cost: 3000000
+    class: Corvette
+    url: https://starwars.fandom.com/wiki/Marauder-class_Assault_Corvette
+  - name: Action VI transport
+    cost: 175000
+    class: Transport
+    url: https://starwars.fandom.com/wiki/Action_VI_transport
+  - name: Gallofree Yards transport
+    cost: 300000
+    class: Transport
+    url: https://starwars.fandom.com/wiki/Gallofree_Yards_transport
+  - name: Consul-class cruiser/Legends
+    cost: 4000000
+    class: Cruiser
+    url: https://starwars.fandom.com/wiki/Consul-class_cruiser/Legends
+  
+  # Captured Imperial Ships (used by Rebellion)
+  - name: Lambda-class T-4a shuttle (Rebel captured)
+    cost: 140000
+    class: Multi-purpose transport
+    url: https://starwars.fandom.com/wiki/Lambda-class_T-4a_shuttle
+  - name: Gozanti-class cruiser (Rebel captured)
+    cost: 200000
+    class: Light cruiser
+    url: https://starwars.fandom.com/wiki/Gozanti-class_cruiser
+  - name: Sentinel-class landing craft (Rebel captured)
+    cost: 240000
+    class: Assault shuttle
+    url: https://starwars.fandom.com/wiki/Sentinel-class_landing_craft
+  
+  # Ground Vehicles
+  - name: T-47 airspeeder (Snowspeeder)
+    cost: 50000
+    class: Airspeeder
+    url: https://starwars.fandom.com/wiki/T-47_airspeeder
+  - name: T-16 skyhopper
+    cost: 14500
+    class: Airspeeder
+    url: https://starwars.fandom.com/wiki/T-16_skyhopper
+  - name: V-35 Landspeeder
+    cost: 10550
+    class: Landspeeder
+    url: https://starwars.fandom.com/wiki/V-35_Landspeeder
+  - name: X-34 landspeeder
+    cost: 10550
+    class: Landspeeder
+    url: https://starwars.fandom.com/wiki/X-34_landspeeder
+  - name: 74-Z speeder bike (Rebel captured)
+    cost: 3000
+    class: Speeder bike
+    url: https://starwars.fandom.com/wiki/74-Z_speeder_bike
+  - name: A-A5 speeder truck
+    cost: 18000
+    class: Speeder truck
+    url: https://starwars.fandom.com/wiki/A-A5_speeder_truck
+  - name: Armored Assault Tank AAT (Captured)
+    cost: 75000
+    class: Tank
+    url: https://starwars.fandom.com/wiki/Armored_Assault_Tank
+  - name: Infantry Support Platform
+    cost: 35000
+    class: Repulsorlift vehicle
+    url: https://starwars.fandom.com/wiki/Infantry_Support_Platform
+  
+  # Personnel and Equipment
+  - name: Rebel Soldier
+    cost: 3000
+    class: Personnel
+    url: https://starwars.fandom.com/wiki/Rebel_trooper
+  - name: Rebel Pilot
+    cost: 5000
+    class: Personnel
+    url: https://starwars.fandom.com/wiki/Rebel_pilots
+  - name: Rebel Commando
+    cost: 8000
+    class: Personnel
+    url: https://starwars.fandom.com/wiki/Alliance_Special_Forces
+  - name: Rebel Marine
+    cost: 4500
+    class: Personnel
+    url: https://starwars.fandom.com/wiki/Alliance_Fleet_Marines
+  - name: Rebel Honor Guard
+    cost: 12000
+    class: Personnel
+    url: https://starwars.fandom.com/wiki/Rebel_honor_guard
+  - name: Alliance Starfighter Pilot
+    cost: 6000
+    class: Personnel
+    url: https://starwars.fandom.com/wiki/Alliance_Starfighter_Corps
+  - name: Pathfinder
+    cost: 10000
+    class: Personnel
+    url: https://starwars.fandom.com/wiki/Pathfinders
+  
+  # Droids and Support Equipment
+  - name: R2-series astromech droid
+    cost: 4245
+    class: Droid
+    url: https://starwars.fandom.com/wiki/R2-series_astromech_droid
+  - name: R5-series astromech droid
+    cost: 3500
+    class: Droid
+    url: https://starwars.fandom.com/wiki/R5-series_astromech_droid
+  - name: 3PO-series protocol droid
+    cost: 3000
+    class: Droid
+    url: https://starwars.fandom.com/wiki/3PO-series_protocol_droid
+  - name: 2-1B surgical droid
+    cost: 4300
+    class: Medical droid
+    url: https://starwars.fandom.com/wiki/2-1B-series_medical_droid
+  - name: Probot (Viper probe droid - captured)
+    cost: 12500
+    class: Probe droid
+    url: https://starwars.fandom.com/wiki/Viper_probe_droid
+  - name: Power generator
+    cost: 50000
+    class: Equipment
+    url: https://starwars.fandom.com/wiki/Power_generator
+  - name: Shield generator
+    cost: 125000
+    class: Equipment
+    url: https://starwars.fandom.com/wiki/Shield_generator
+  - name: Ion cannon (ground-based)
+    cost: 250000
+    class: Heavy weapon
+    url: https://starwars.fandom.com/wiki/Ion_cannon
+  - name: Turbolaser battery (ground-based)
+    cost: 350000
+    class: Heavy weapon
+    url: https://starwars.fandom.com/wiki/Turbolaser
+
+units:
+  - name: X-wing Squadron
+    components:
+      - type: ship
+        name: T-65B X-wing starfighter
+        quantity: 12
+      - type: ship
+        name: R2-series astromech droid
+        quantity: 12
+      - type: ship
+        name: Rebel Pilot
+        quantity: 12
+  
+  - name: Y-wing Squadron
+    components:
+      - type: ship
+        name: BTL-A4 Y-wing assault starfighter/bomber
+        quantity: 12
+      - type: ship
+        name: R2-series astromech droid
+        quantity: 12
+      - type: ship
+        name: Rebel Pilot
+        quantity: 12
+  
+  - name: A-wing Squadron
+    components:
+      - type: ship
+        name: RZ-1 A-wing interceptor
+        quantity: 12
+      - type: ship
+        name: Rebel Pilot
+        quantity: 12
+  
+  - name: B-wing Squadron
+    components:
+      - type: ship
+        name: A/SF-01 B-wing starfighter
+        quantity: 12
+      - type: ship
+        name: Rebel Pilot
+        quantity: 12
+  
+  - name: Rogue Squadron
+    components:
+      - type: ship
+        name: T-65B X-wing starfighter
+        quantity: 12
+      - type: ship
+        name: R2-series astromech droid
+        quantity: 12
+      - type: ship
+        name: Alliance Starfighter Pilot
+        quantity: 12
+  
+  - name: Gold Squadron
+    components:
+      - type: ship
+        name: BTL-A4 Y-wing assault starfighter/bomber
+        quantity: 12
+      - type: ship
+        name: R2-series astromech droid
+        quantity: 12
+      - type: ship
+        name: Alliance Starfighter Pilot
+        quantity: 12
+  
+  - name: Red Squadron
+    components:
+      - type: ship
+        name: T-65B X-wing starfighter
+        quantity: 12
+      - type: ship
+        name: R2-series astromech droid
+        quantity: 12
+      - type: ship
+        name: Alliance Starfighter Pilot
+        quantity: 12
+  
+  - name: Green Squadron
+    components:
+      - type: ship
+        name: RZ-1 A-wing interceptor
+        quantity: 12
+      - type: ship
+        name: Alliance Starfighter Pilot
+        quantity: 12
+  
+  - name: Mixed Fighter Wing
+    components:
+      - type: ship
+        name: T-65B X-wing starfighter
+        quantity: 36
+      - type: ship
+        name: BTL-A4 Y-wing assault starfighter/bomber
+        quantity: 24
+      - type: ship
+        name: RZ-1 A-wing interceptor
+        quantity: 12
+      - type: ship
+        name: R2-series astromech droid
+        quantity: 60
+      - type: ship
+        name: Alliance Starfighter Pilot
+        quantity: 72
+  
+  - name: Rebel Infantry Company
+    components:
+      - type: ship
+        name: Rebel Soldier
+        quantity: 150
+      - type: ship
+        name: Rebel Commando
+        quantity: 20
+      - type: ship
+        name: T-47 airspeeder (Snowspeeder)
+        quantity: 4
+      - type: ship
+        name: Infantry Support Platform
+        quantity: 2
+  
+  - name: Rebel Commando Strike Team
+    components:
+      - type: ship
+        name: Rebel Commando
+        quantity: 12
+      - type: ship
+        name: Pathfinder
+        quantity: 4
+      - type: ship
+        name: UT-60D U-wing starfighter/support craft
+        quantity: 2
+  
+  - name: Echo Base Defense Force
+    components:
+      - type: ship
+        name: Rebel Soldier
+        quantity: 600
+      - type: ship
+        name: T-47 airspeeder (Snowspeeder)
+        quantity: 24
+      - type: ship
+        name: Ion cannon (ground-based)
+        quantity: 2
+      - type: ship
+        name: Shield generator
+        quantity: 1
+      - type: ship
+        name: Power generator
+        quantity: 4
+      - type: ship
+        name: Turbolaser battery (ground-based)
+        quantity: 4
+  
+  - name: Rebel Transport Group
+    components:
+      - type: ship
+        name: GR-75 medium transport
+        quantity: 6
+      - type: ship
+        name: CR90 corvette
+        quantity: 2
+      - type: ship
+        name: X-wing Squadron
+        quantity: 2
+  
+  - name: Mon Calamari Battle Group
+    components:
+      - type: ship
+        name: MC80 Liberty Type Heavy Star Cruiser
+        quantity: 1
+      - type: ship
+        name: EF76 Nebulon-B escort frigate
+        quantity: 2
+      - type: ship
+        name: CR90 corvette
+        quantity: 4
+      - type: unit
+        name: Mixed Fighter Wing
+        quantity: 2
+      - type: ship
+        name: GR-75 medium transport
+        quantity: 8
+  
+  - name: Assault Frigate Task Force
+    components:
+      - type: ship
+        name: Assault Frigate Mark II
+        quantity: 1
+      - type: ship
+        name: CR90 corvette
+        quantity: 2
+      - type: ship
+        name: DP20 gunship
+        quantity: 2
+      - type: unit
+        name: X-wing Squadron
+        quantity: 2
+      - type: unit
+        name: Y-wing Squadron
+        quantity: 1
+  
+  - name: Nebulon-B Patrol Group
+    components:
+      - type: ship
+        name: EF76 Nebulon-B escort frigate
+        quantity: 1
+      - type: ship
+        name: CR90 corvette
+        quantity: 2
+      - type: unit
+        name: X-wing Squadron
+        quantity: 1
+      - type: unit
+        name: A-wing Squadron
+        quantity: 1
+  
+  - name: Rebel Special Forces Regiment
+    components:
+      - type: ship
+        name: Rebel Commando
+        quantity: 800
+      - type: ship
+        name: Pathfinder
+        quantity: 200
+      - type: ship
+        name: UT-60D U-wing starfighter/support craft
+        quantity: 24
+      - type: ship
+        name: GR-75 medium transport
+        quantity: 4
+      - type: ship
+        name: Lambda-class T-4a shuttle (Rebel captured)
+        quantity: 12
+
+fleets:
+  - name: Rebel Alliance Home Fleet
+    entries:
+      - type: ship
+        name: MC80A Home One Type Heavy Star Cruiser
+        quantity: 1
+      - type: ship
+        name: MC80 Liberty Type Heavy Star Cruiser
+        quantity: 6
+      - type: ship
+        name: MC75 Star Cruiser
+        quantity: 4
+      - type: ship
+        name: EF76 Nebulon-B escort frigate
+        quantity: 12
+      - type: ship
+        name: CR90 corvette
+        quantity: 24
+      - type: ship
+        name: DP20 gunship
+        quantity: 8
+      - type: ship
+        name: Hammerhead corvette
+        quantity: 6
+      - type: ship
+        name: GR-75 medium transport
+        quantity: 40
+      - type: unit
+        name: X-wing Squadron
+        quantity: 20
+      - type: unit
+        name: Y-wing Squadron
+        quantity: 12
+      - type: unit
+        name: A-wing Squadron
+        quantity: 8
+      - type: unit
+        name: B-wing Squadron
+        quantity: 4
+      - type: ship
+        name: Rebel Soldier
+        quantity: 5000
+      - type: ship
+        name: Rebel Marine
+        quantity: 2000
+  
+  - name: Rebel Sector Fleet
+    entries:
+      - type: ship
+        name: MC80 Liberty Type Heavy Star Cruiser
+        quantity: 2
+      - type: ship
+        name: EF76 Nebulon-B escort frigate
+        quantity: 4
+      - type: ship
+        name: Assault Frigate Mark II
+        quantity: 2
+      - type: ship
+        name: CR90 corvette
+        quantity: 8
+      - type: ship
+        name: DP20 gunship
+        quantity: 4
+      - type: ship
+        name: GR-75 medium transport
+        quantity: 12
+      - type: unit
+        name: Mixed Fighter Wing
+        quantity: 3
+      - type: ship
+        name: Rebel Soldier
+        quantity: 2000
+  
+  - name: Rapid Response Task Force
+    entries:
+      - type: ship
+        name: MC75 Star Cruiser
+        quantity: 1
+      - type: ship
+        name: Hammerhead corvette
+        quantity: 4
+      - type: ship
+        name: CR90 corvette
+        quantity: 6
+      - type: unit
+        name: X-wing Squadron
+        quantity: 4
+      - type: unit
+        name: A-wing Squadron
+        quantity: 2
+      - type: ship
+        name: UT-60D U-wing starfighter/support craft
+        quantity: 12
+      - type: ship
+        name: Rebel Commando
+        quantity: 400

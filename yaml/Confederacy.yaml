@@ -1,0 +1,449 @@
+ships:
+# Droid Starfighters
+- name: Vulture-class starfighter
+  cost: 40000
+  class: Droid starfighter
+  url: https://starwars.fandom.com/wiki/Vulture-class_starfighter
+- name: Droid tri-fighter
+  cost: 40000
+  class: Droid interceptor
+  url: https://starwars.fandom.com/wiki/Droid_tri-fighter
+- name: Hyena-class Droid Fighter/Bomber
+  cost: 120000
+  class: Droid bomber
+  url: https://starwars.fandom.com/wiki/Hyena-class_Droid_Fighter/Bomber
+- name: HMP droid gunship
+  cost: 60000
+  class: Droid gunship
+  url: https://starwars.fandom.com/wiki/HMP_droid_gunship
+- name: Nantex-class territorial defense starfighter
+  cost: 35000
+  class: Starfighter
+  url: https://starwars.fandom.com/wiki/Nantex-class_territorial_defense_starfighter
+- name: Scarab-class starfighter
+  cost: 38000
+  class: Droid starfighter
+  url: https://starwars.fandom.com/wiki/Scarab-class_starfighter
+
+# Manned Starfighters
+- name: Belbullab-22 starfighter
+  cost: 168000
+  class: Starfighter
+  url: https://starwars.fandom.com/wiki/Belbullab-22_starfighter
+- name: Belbullab-22 heavy starfighter
+  cost: 185000
+  class: Heavy starfighter
+  url: https://starwars.fandom.com/wiki/Belbullab-22_heavy_starfighter
+- name: Ginivex-class fanblade starfighter
+  cost: 180000
+  class: Interceptor
+  url: https://starwars.fandom.com/wiki/Ginivex-class_fanblade_starfighter
+- name: Mankvim-814 light interceptor
+  cost: 70000
+  class: Interceptor
+  url: https://starwars.fandom.com/wiki/Mankvim-814_light_interceptor
+- name: Porax-38 starfighter
+  cost: 85000
+  class: Starfighter
+  url: https://starwars.fandom.com/wiki/Porax-38_starfighter
+- name: Rogue-class Porax-38 starfighter
+  cost: 90000
+  class: Starfighter
+  url: https://starwars.fandom.com/wiki/Rogue-class_Porax-38_starfighter
+- name: Zenuas 33 Umbaran starfighter
+  cost: 145000
+  class: Starfighter
+  url: https://starwars.fandom.com/wiki/Zenuas_33_Umbaran_starfighter
+- name: Cutlass-9 patrol fighter
+  cost: 55000
+  class: Patrol fighter
+  url: https://starwars.fandom.com/wiki/Cutlass-9_patrol_fighter
+
+# Capital Ships - Battleships and Dreadnoughts
+- name: Lucrehulk-class battleship
+  cost: 200000000
+  class: Battleship / Droid control ship
+  url: https://starwars.fandom.com/wiki/Lucrehulk-class_battleship
+- name: Subjugator-class heavy cruiser
+  cost: 850000000
+  class: Heavy cruiser
+  url: https://starwars.fandom.com/wiki/Subjugator-class_heavy_cruiser
+- name: Providence-class carrier/destroyer
+  cost: 120000000
+  class: Dreadnought
+  url: https://starwars.fandom.com/wiki/Providence-class_carrier/destroyer
+
+# Capital Ships - Destroyers and Cruisers
+- name: Recusant-class light destroyer
+  cost: 48000000
+  class: Destroyer
+  url: https://starwars.fandom.com/wiki/Recusant-class_light_destroyer
+- name: Diamond-class cruiser
+  cost: 28000000
+  class: Cruiser
+  url: https://starwars.fandom.com/wiki/Diamond-class_cruiser
+- name: Munificent-class star frigate
+  cost: 12000000
+  class: Frigate
+  url: https://starwars.fandom.com/wiki/Munificent-class_star_frigate
+
+# Support Ships
+- name: Dual Hemisphere-Omni Support Vessel
+  cost: 8500000
+  class: Support vessel
+  url: https://starwars.fandom.com/wiki/Dual_Hemisphere-Omni_Support_Vessel
+- name: Umbaran support ship
+  cost: 7500000
+  class: Support ship
+  url: https://starwars.fandom.com/wiki/Umbaran_support_ship
+
+# Transports and Landing Craft
+- name: C-9979 landing craft
+  cost: 12000000
+  class: Heavy transport
+  url: https://starwars.fandom.com/wiki/C-9979_landing_craft
+- name: Hardcell-class transport
+  cost: 4500000
+  class: Transport
+  url: https://starwars.fandom.com/wiki/Hardcell-class_transport
+- name: Trident-class assault ship
+  cost: 3500000
+  class: Assault ship
+  url: https://starwars.fandom.com/wiki/Trident-class_assault_ship
+- name: Gozanti-class cruiser
+  cost: 200000
+  class: Light cruiser / transport
+  url: https://starwars.fandom.com/wiki/Gozanti-class_cruiser
+
+# Shuttles and Small Craft
+- name: Sheathipede-class transport shuttle
+  cost: 135000
+  class: Shuttle
+  url: https://starwars.fandom.com/wiki/Sheathipede-class_transport_shuttle
+- name: Maxillipede shuttle
+  cost: 120000
+  class: Shuttle
+  url: https://starwars.fandom.com/wiki/Maxillipede_shuttle
+- name: Separatist drop ship
+  cost: 250000
+  class: Dropship
+  url: https://starwars.fandom.com/wiki/Separatist_drop_ship
+- name: Droch-class boarding ship
+  cost: 43000
+  class: Boarding craft
+  url: https://starwars.fandom.com/wiki/Droch-class_boarding_ship
+
+# Ground Forces - Battle Droids
+- name: B1 battle droid
+  cost: 1800
+  class: Droid infantry
+  url: https://starwars.fandom.com/wiki/B1_battle_droid
+- name: B2 super battle droid
+  cost: 3000
+  class: Droid infantry
+  url: https://starwars.fandom.com/wiki/B2_super_battle_droid
+- name: Droidekas
+  cost: 11000
+  class: Droid
+  url: https://starwars.fandom.com/wiki/Droideka
+- name: BX-series droid commando
+  cost: 6500
+  class: Droid commando
+  url: https://starwars.fandom.com/wiki/BX-series_droid_commando
+
+# Ground Forces - Vehicles
+- name: AAT (Armored Assault Tank)
+  cost: 75000
+  class: Tank
+  url: https://starwars.fandom.com/wiki/Armored_Assault_Tank
+- name: MTT (Multi-Troop Transport)
+  cost: 130000
+  class: Transport
+  url: https://starwars.fandom.com/wiki/Multi-Troop_Transport
+- name: STAP (Single Trooper Aerial Platform)
+  cost: 3000
+  class: Speeder
+  url: https://starwars.fandom.com/wiki/Single_Trooper_Aerial_Platform
+- name: IG-227 Hailfire-class droid tank
+  cost: 65000
+  class: Droid tank
+  url: https://starwars.fandom.com/wiki/IG-227_Hailfire-class_droid_tank
+
+units:
+# Fighter Squadrons
+- name: Vulture Droid Squadron
+  components:
+  - type: ship
+    name: Vulture-class starfighter
+    quantity: 12
+
+- name: Tri-Fighter Squadron
+  components:
+  - type: ship
+    name: Droid tri-fighter
+    quantity: 12
+
+- name: Hyena Bomber Squadron
+  components:
+  - type: ship
+    name: Hyena-class Droid Fighter/Bomber
+    quantity: 12
+
+- name: Nantex Squadron
+  components:
+  - type: ship
+    name: Nantex-class territorial defense starfighter
+    quantity: 12
+
+- name: Mixed Droid Fighter Wing
+  components:
+  - type: ship
+    name: Vulture-class starfighter
+    quantity: 36
+  - type: ship
+    name: Droid tri-fighter
+    quantity: 12
+  - type: ship
+    name: Hyena-class Droid Fighter/Bomber
+    quantity: 12
+
+# Capital Ship Battle Groups
+- name: Munificent Battle Group
+  components:
+  - type: ship
+    name: Munificent-class star frigate
+    quantity: 1
+  - type: unit
+    name: Vulture Droid Squadron
+    quantity: 4
+  - type: ship
+    name: Gozanti-class cruiser
+    quantity: 2
+
+- name: Recusant Task Force
+  components:
+  - type: ship
+    name: Recusant-class light destroyer
+    quantity: 1
+  - type: unit
+    name: Mixed Droid Fighter Wing
+    quantity: 1
+  - type: ship
+    name: Munificent-class star frigate
+    quantity: 2
+
+- name: Providence Task Force
+  components:
+  - type: ship
+    name: Providence-class carrier/destroyer
+    quantity: 1
+  - type: ship
+    name: Munificent-class star frigate
+    quantity: 2
+  - type: unit
+    name: Mixed Droid Fighter Wing
+    quantity: 2
+  - type: ship
+    name: C-9979 landing craft
+    quantity: 4
+
+- name: Lucrehulk Battle Group
+  components:
+  - type: ship
+    name: Lucrehulk-class battleship
+    quantity: 1
+  - type: ship
+    name: Munificent-class star frigate
+    quantity: 4
+  - type: unit
+    name: Mixed Droid Fighter Wing
+    quantity: 6
+  - type: ship
+    name: C-9979 landing craft
+    quantity: 8
+
+# Ground Forces
+- name: Battle Droid Legion
+  components:
+  - type: ship
+    name: B1 battle droid
+    quantity: 10000
+  - type: ship
+    name: B2 super battle droid
+    quantity: 1000
+  - type: ship
+    name: Droidekas
+    quantity: 100
+  - type: ship
+    name: BX-series droid commando
+    quantity: 50
+
+- name: Droid Armor Battalion
+  components:
+  - type: ship
+    name: AAT (Armored Assault Tank)
+    quantity: 50
+  - type: ship
+    name: MTT (Multi-Troop Transport)
+    quantity: 20
+  - type: ship
+    name: STAP (Single Trooper Aerial Platform)
+    quantity: 100
+  - type: ship
+    name: IG-227 Hailfire-class droid tank
+    quantity: 12
+
+- name: Invasion Army
+  components:
+  - type: unit
+    name: Battle Droid Legion
+    quantity: 3
+  - type: unit
+    name: Droid Armor Battalion
+    quantity: 2
+  - type: ship
+    name: C-9979 landing craft
+    quantity: 15
+  - type: ship
+    name: HMP droid gunship
+    quantity: 50
+
+# CIS Army Organization (Standard Hierarchy)
+- name: Droid Squad
+  components:
+  - type: ship
+    name: B1 battle droid
+    quantity: 8
+
+- name: Droid Platoon
+  components:
+  - type: unit
+    name: Droid Squad
+    quantity: 7
+
+- name: Droid Company
+  components:
+  - type: unit
+    name: Droid Platoon
+    quantity: 2
+  - type: ship
+    name: B2 super battle droid
+    quantity: 11
+  - type: ship
+    name: Droidekas
+    quantity: 2
+  - type: ship
+    name: BX-series droid commando
+    quantity: 1
+  - type: ship
+    name: MTT (Multi-Troop Transport)
+    quantity: 1
+
+- name: Droid Battalion
+  components:
+  - type: unit
+    name: Droid Company
+    quantity: 7
+  - type: ship
+    name: AAT (Armored Assault Tank)
+    quantity: 24
+
+- name: Droid Vanguard
+  components:
+  - type: unit
+    name: Droid Company
+    quantity: 11
+  - type: ship
+    name: AAT (Armored Assault Tank)
+    quantity: 18
+
+- name: Droid Regiment
+  components:
+  - type: unit
+    name: Droid Battalion
+    quantity: 4
+  - type: unit
+    name: Droid Vanguard
+    quantity: 1
+  - type: ship
+    name: C-9979 landing craft
+    quantity: 1
+
+- name: Droid Division
+  components:
+  - type: unit
+    name: Droid Regiment
+    quantity: 5
+
+- name: Droid Corps
+  components:
+  - type: unit
+    name: Droid Division
+    quantity: 5
+
+- name: Droid Army
+  components:
+  - type: unit
+    name: Droid Corps
+    quantity: 2
+
+fleets:
+- name: CIS Sector Fleet
+  entries:
+  - type: ship
+    name: Lucrehulk-class battleship
+    quantity: 1
+  - type: ship
+    name: Providence-class carrier/destroyer
+    quantity: 4
+  - type: ship
+    name: Recusant-class light destroyer
+    quantity: 8
+  - type: ship
+    name: Munificent-class star frigate
+    quantity: 16
+  - type: ship
+    name: Diamond-class cruiser
+    quantity: 4
+  - type: unit
+    name: Mixed Droid Fighter Wing
+    quantity: 20
+  - type: unit
+    name: Invasion Army
+    quantity: 2
+  - type: ship
+    name: Gozanti-class cruiser
+    quantity: 30
+
+- name: CIS Invasion Fleet
+  entries:
+  - type: unit
+    name: Lucrehulk Battle Group
+    quantity: 2
+  - type: unit
+    name: Providence Task Force
+    quantity: 6
+  - type: unit
+    name: Recusant Task Force
+    quantity: 8
+  - type: unit
+    name: Invasion Army
+    quantity: 5
+  - type: ship
+    name: Dual Hemisphere-Omni Support Vessel
+    quantity: 2
+
+- name: CIS Raid Fleet
+  entries:
+  - type: ship
+    name: Recusant-class light destroyer
+    quantity: 3
+  - type: ship
+    name: Munificent-class star frigate
+    quantity: 6
+  - type: unit
+    name: Mixed Droid Fighter Wing
+    quantity: 8
+  - type: ship
+    name: Droch-class boarding ship
+    quantity: 24

@@ -250,6 +250,57 @@ export default function FleetBuilder({ genre, updateGenre, onEditUnit }: Props) 
     URL.revokeObjectURL(url)
   }
 
+  function exportFlatUnitsCsv() {
+    if (!activeFleet) return
+
+    // Recursively count every unit type instance (including sub-units of units)
+    const unitCounts = new Map<string, number>()
+    function countUnit(unitId: string, multiplier: number, visited: Set<string>) {
+      if (visited.has(unitId)) return
+      const ut = genre.unitTypes.find(u => u.id === unitId)
+      if (!ut) return
+      unitCounts.set(unitId, (unitCounts.get(unitId) ?? 0) + multiplier)
+      const next = new Set(visited).add(unitId)
+      for (const comp of ut.components) {
+        if (comp.type === 'unit') {
+          countUnit(comp.refId, comp.quantity * multiplier, next)
+        }
+      }
+    }
+    for (const entry of activeFleet.entries) {
+      if (entry.type === 'unit') {
+        countUnit(entry.refId, entry.quantity, new Set())
+      }
+    }
+
+    type UnitRow = { name: string; qty: number; unitCost: number; subtotal: number }
+    const rows: UnitRow[] = []
+    for (const [unitId, qty] of unitCounts) {
+      const name = genre.unitTypes.find(u => u.id === unitId)?.name ?? '(deleted)'
+      const cost = unitTypeCost(unitId, genre.shipTypes, genre.unitTypes)
+      rows.push({ name, qty, unitCost: cost, subtotal: cost * qty })
+    }
+    rows.sort((a, b) => a.name.localeCompare(b.name))
+
+    const grandTotal = rows.reduce((s, r) => s + r.subtotal, 0)
+    const esc = (v: string) =>
+      v.includes(',') || v.includes('"') || v.includes('\n') ? `"${v.replace(/"/g, '""')}"` : v
+
+    const csvLines = [
+      'Unit,Qty,Unit Cost,Subtotal',
+      ...rows.map(r => [esc(r.name), r.qty, r.unitCost, r.subtotal].join(',')),
+      `,,,${grandTotal}`,
+    ]
+
+    const blob = new Blob([csvLines.join('\n')], { type: 'text/csv' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${activeFleet.name.replace(/[^a-z0-9]+/gi, '_')}_units.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
   const options = addType === 'ship' ? genre.shipTypes : genre.unitTypes
   const rawEntries = activeFleet?.entries ?? []
 
@@ -395,6 +446,14 @@ export default function FleetBuilder({ genre, updateGenre, onEditUnit }: Props) 
               Delete
             </button>
             <div className="ml-auto flex gap-2">
+              <button
+                onClick={exportFlatUnitsCsv}
+                disabled={!activeFleet || activeFleet.entries.length === 0}
+                className="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 disabled:opacity-40 disabled:cursor-not-allowed rounded text-sm transition-colors"
+                title="Export flattened unit totals as CSV"
+              >
+                Export Units
+              </button>
               <button
                 onClick={exportFlatCsv}
                 disabled={!activeFleet || activeFleet.entries.length === 0}

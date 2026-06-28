@@ -1,13 +1,25 @@
 import type { AppState, Genre } from './types'
 import { nanoid } from './utils'
 import { createEmpireGenre } from './data/empireSeeds'
+import { createRebellionGenre } from './data/RebellionSeeds'
+import { createRepublicGenre } from './data/RepublicSeeds'
+import { createConfederacyGenre } from './data/ConfederacySeeds'
+import { createAllGenre } from './data/AllSeeds'
 
 const KEY = 'fleetBuilder_v4'
 const PREV_KEYS = ['fleetBuilder_v3', 'fleetBuilder_v2', 'fleetBuilder_v1']
 
+const SEED_FACTORIES = [
+  createEmpireGenre,
+  createRebellionGenre,
+  createRepublicGenre,
+  createConfederacyGenre,
+  createAllGenre,
+]
+
 function defaultState(): AppState {
-  const empire = createEmpireGenre()
-  return { genres: [empire], activeGenreId: empire.id }
+  const genres = SEED_FACTORIES.map(f => f())
+  return { genres, activeGenreId: 'genre_all' }
 }
 
 /** Patch any Empire genre ships that are missing URLs or shipClass from the seed. */
@@ -63,11 +75,16 @@ export function loadState(): AppState {
 
     const { genres: rawGenres, activeGenreId } = parseGenres(raw)
 
-    // Ensure Empire exists, then patch any missing fields
-    const hasEmpire = rawGenres.some(g => g.id === 'genre_empire')
-    const genres = patchEmpireFields(hasEmpire ? rawGenres : [...rawGenres, createEmpireGenre()])
+    // Ensure all seed genres exist; patch Empire fields
+    let genres = patchEmpireFields(rawGenres)
+    for (const factory of SEED_FACTORIES) {
+      const seed = factory()
+      if (!genres.some(g => g.id === seed.id)) {
+        genres = [...genres, seed]
+      }
+    }
 
-    return { genres, activeGenreId: activeGenreId ?? genres[0]?.id ?? null }
+    return { genres, activeGenreId: activeGenreId ?? 'genre_all' }
   } catch {
     return defaultState()
   }
