@@ -8,14 +8,13 @@ interface Props {
   genre: Genre
   updateGenre: (updater: (g: Genre) => Genre) => void
   onEditUnit: (unitId: string) => void
+  activeFleetId: string | null
+  onFleetChange: (id: string | null) => void
 }
 
 type SortCol = 'name' | 'type' | 'qty' | 'unitCost' | 'subtotal'
 
-export default function FleetBuilder({ genre, updateGenre, onEditUnit }: Props) {
-  const [activeFleetId, setActiveFleetId] = useState<string | null>(
-    () => genre.fleets[0]?.id ?? null,
-  )
+export default function FleetBuilder({ genre, updateGenre, onEditUnit, activeFleetId, onFleetChange: setActiveFleetId }: Props) {
   const [renaming, setRenaming] = useState(false)
   const [renameValue, setRenameValue] = useState('')
   const [addType, setAddType] = useState<'ship' | 'unit'>('unit')

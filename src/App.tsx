@@ -22,6 +22,8 @@ export default function App() {
   const [genreRenameValue, setGenreRenameValue] = useState('')
   const [importMsg, setImportMsg] = useState<{ text: string; ok: boolean } | null>(null)
   const [pendingEditUnitId, setPendingEditUnitId] = useState<string | null>(null)
+  const [activeFleetId, setActiveFleetId] = useState<string | null>(null)
+  const [filterUnitsToFleet, setFilterUnitsToFleet] = useState(false)
   const importRef = useRef<HTMLInputElement>(null)
 
   function navigateToUnit(unitId: string) {
@@ -262,8 +264,8 @@ export default function App() {
           </div>
         ) : (
           <>
-            {tab === 'fleet' && <FleetBuilder genre={activeGenre} updateGenre={updateGenre} onEditUnit={navigateToUnit} />}
-            {tab === 'units' && <UnitTypeManager genre={activeGenre} updateGenre={updateGenre} pendingEditUnitId={pendingEditUnitId} onClearPending={() => setPendingEditUnitId(null)} />}
+            {tab === 'fleet' && <FleetBuilder genre={activeGenre} updateGenre={updateGenre} onEditUnit={navigateToUnit} activeFleetId={activeFleetId} onFleetChange={setActiveFleetId} />}
+            {tab === 'units' && <UnitTypeManager genre={activeGenre} updateGenre={updateGenre} pendingEditUnitId={pendingEditUnitId} onClearPending={() => setPendingEditUnitId(null)} activeFleetId={activeFleetId} filterToFleet={filterUnitsToFleet} onFilterChange={setFilterUnitsToFleet} />}
             {tab === 'ships' && <ShipTypeManager genre={activeGenre} updateGenre={updateGenre} />}
           </>
         )}

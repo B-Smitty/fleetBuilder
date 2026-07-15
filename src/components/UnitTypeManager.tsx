@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import type { Genre, UnitType, UnitComponent } from '../types'
 import { nanoid } from '../utils'
 import { unitTypeCost, reachableUnitIds } from '../costs'
@@ -11,6 +11,9 @@ interface Props {
   updateGenre: (updater: (g: Genre) => Genre) => void
   pendingEditUnitId?: string | null
   onClearPending?: () => void
+  activeFleetId?: string | null
+  filterToFleet?: boolean
+  onFilterChange?: (v: boolean) => void
 }
 
 interface UnitForm {
@@ -30,7 +33,7 @@ type SortCol = 'name' | 'cost'
 const blankForm = (): UnitForm => ({ name: '', description: '', components: [] })
 const blankComp = (refId = ''): NewComp => ({ type: 'ship', refId, quantity: 1 })
 
-export default function UnitTypeManager({ genre, updateGenre, pendingEditUnitId, onClearPending }: Props) {
+export default function UnitTypeManager({ genre, updateGenre, pendingEditUnitId, onClearPending, activeFleetId, filterToFleet = false, onFilterChange }: Props) {
   const [form, setForm] = useState<UnitForm>(blankForm())
   const [editingId, setEditingId] = useState<string | null>(null)
   const formRef = useRef<HTMLDivElement>(null)
@@ -191,15 +194,33 @@ export default function UnitTypeManager({ genre, updateGenre, pendingEditUnitId,
     ? genre.unitTypes.length - 1 - availableUnits.length
     : 0
 
+  const fleetUnitIds = useMemo(() => {
+    if (!filterToFleet) return null
+    const fleet = genre.fleets.find(f => f.id === activeFleetId) ?? genre.fleets[0]
+    if (!fleet) return new Set<string>()
+    const ids = new Set<string>()
+    function collect(unitId: string) {
+      if (ids.has(unitId)) return
+      ids.add(unitId)
+      genre.unitTypes.find(u => u.id === unitId)?.components.forEach(c => {
+        if (c.type === 'unit') collect(c.refId)
+      })
+    }
+    fleet.entries.forEach(e => { if (e.type === 'unit') collect(e.refId) })
+    return ids
+  }, [filterToFleet, activeFleetId, genre.fleets, genre.unitTypes])
+
+  const baseUnits = fleetUnitIds ? genre.unitTypes.filter(u => fleetUnitIds.has(u.id)) : genre.unitTypes
+
   const displayed = sortCol
-    ? [...genre.unitTypes].sort((a, b) => {
+    ? [...baseUnits].sort((a, b) => {
         const dir = sortDir === 'asc' ? 1 : -1
         if (sortCol === 'name') return a.name.localeCompare(b.name) * dir
         const ca = unitTypeCost(a.id, genre.shipTypes, genre.unitTypes)
         const cb = unitTypeCost(b.id, genre.shipTypes, genre.unitTypes)
         return (ca - cb) * dir
       })
-    : genre.unitTypes
+    : baseUnits
 
   function sortIndicator(col: SortCol) {
     if (sortCol !== col) return <span className="ml-1 text-gray-600">⇅</span>
@@ -208,7 +229,18 @@ export default function UnitTypeManager({ genre, updateGenre, pendingEditUnitId,
 
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4">Unit Types</h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-semibold">Unit Types</h2>
+        <label className="flex items-center gap-2 text-xs text-gray-400 cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={filterToFleet}
+            onChange={e => onFilterChange?.(e.target.checked)}
+            className="accent-blue-500"
+          />
+          Show fleet units only
+        </label>
+      </div>
 
       <div ref={formRef} className="bg-gray-800 rounded-lg p-4 mb-6">
         <p className="text-xs text-gray-400 mb-3">{isEditing ? 'Editing unit type' : 'New unit type'}</p>
@@ -329,6 +361,10 @@ export default function UnitTypeManager({ genre, updateGenre, pendingEditUnitId,
 
       {genre.unitTypes.length === 0 ? (
         <p className="text-gray-500 text-sm">No unit types defined yet.</p>
+      ) : displayed.length === 0 ? (
+        <p className="text-gray-500 text-sm">
+          {filterToFleet ? 'No unit types in the current fleet.' : 'No unit types defined yet.'}
+        </p>
       ) : (
         <>
           <div className="flex items-center gap-3 mb-2 text-xs text-gray-400 border-b border-gray-700 pb-2">
