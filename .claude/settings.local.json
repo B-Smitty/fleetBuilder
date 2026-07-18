@@ -22,7 +22,9 @@
       "Bash(npm list *)",
       "Bash(npx tsc *)",
       "Bash(node \"C:\\\\Users\\\\brent\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-brent-Documents-fleetBuilder\\\\e4c13b56-38a3-4331-b0d5-6c13859bd4ba\\\\scratchpad\\\\genSeeds.mjs\")",
-      "Bash(node \"C:\\\\Users\\\\brent\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-brent-Documents-fleetBuilder\\\\e4c13b56-38a3-4331-b0d5-6c13859bd4ba\\\\scratchpad\\\\genSeeds.cjs\")"
+      "Bash(node \"C:\\\\Users\\\\brent\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-brent-Documents-fleetBuilder\\\\e4c13b56-38a3-4331-b0d5-6c13859bd4ba\\\\scratchpad\\\\genSeeds.cjs\")",
+      "Bash(node scripts/gen-empire-seeds.js)",
+      "Bash(node scripts/gen-empire-seeds.cjs)"
     ]
   }
 }

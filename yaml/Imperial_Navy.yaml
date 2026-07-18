@@ -1,0 +1,1669 @@
+ships:
+  - name: A-7 Hunter Interceptor
+    cost: 80000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/A-7_Hunter_Interceptor
+  - name: A-9 Vigilance interceptor
+    cost: 185000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/A-9_Vigilance_interceptor
+  - name: Acclamator-class transgalactic military assault ship/Legends
+    cost: 29000000
+    class: Heavy cruiser
+    url: https://starwars.fandom.com/wiki/Acclamator-class_transgalactic_military_assault_ship/Legends
+  - name: Adz-class patrol destroyer
+    cost: 4450000
+    class: Destroyer
+    url: https://starwars.fandom.com/wiki/Adz-class_patrol_destroyer
+  - name: Aggressive ReConnaissance-170 starfighter
+    cost: 180000
+    class: Heavy assault starfighter / bombers
+    url: https://starwars.fandom.com/wiki/Aggressive_ReConnaissance-170_starfighter
+  - name: Aggressive ReConnaissance-170 starfighter/Legends
+    cost: 155000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/Aggressive_ReConnaissance-170_starfighter/Legends
+  - name: Alpha-3 Nimbus-class V-wing starfighter
+    cost: 120000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/Alpha-3_Nimbus-class_V-wing_starfighter
+  - name: Alpha-3 Nimbus-class V-wing starfighter/Legends
+    cost: 102500
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/Alpha-3_Nimbus-class_V-wing_starfighter/Legends
+  - name: Alpha-class Xg-1 Star Wing
+    cost: 135000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/Alpha-class_Xg-1_Star_Wing
+  - name: Alpha-class Xg-1 Star Wing/Legends
+    cost: 125000
+    class: Assault starfighter
+    url: https://starwars.fandom.com/wiki/Alpha-class_Xg-1_Star_Wing/Legends
+  - name: Altor-class replenishment ship
+    cost: 11000000
+    class: Replenishment ship / fleet tender
+    url: https://starwars.fandom.com/wiki/Altor-class_replenishment_ship
+  - name: Arquitens-class command cruiser
+    cost: 5000000
+    class: Light cruiser
+    url: https://starwars.fandom.com/wiki/Arquitens-class_command_cruiser
+  - name: Arquitens-class light cruiser
+    cost: 4000000
+    class: Light cruiser
+    url: https://starwars.fandom.com/wiki/Arquitens-class_light_cruiser
+  - name: Assertor-class Star Dreadnought
+    cost: 1100000000
+    class: Star Dreadnought Battlecruiser
+    url: https://starwars.fandom.com/wiki/Assertor-class_Star_Dreadnought
+  - name: Assertor-class Star Dreadnought/Legends
+    cost: 1100000000
+    class: Star Dreadnought
+    url: https://starwars.fandom.com/wiki/Assertor-class_Star_Dreadnought/Legends
+  - name: Bayonet-class light cruiser
+    cost: 5000000
+    class: Light cruiser
+    url: https://starwars.fandom.com/wiki/Bayonet-class_light_cruiser
+  - name: Belbullab-22 starfighter/Legends
+    cost: 168000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/Belbullab-22_starfighter/Legends
+  - name: Belbullab-24 strike bomber
+    cost: 168000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/Belbullab-24_strike_bomber
+  - name: Cantwell-class Arrestor Cruiser
+    cost: 2200000
+    class: Arrestor cruiser Patrol and detainment cruiser
+    url: https://starwars.fandom.com/wiki/Cantwell-class_Arrestor_Cruiser
+  - name: CR70 corvette/Legends
+    cost: 2900000
+    class: Corvette
+    url: https://starwars.fandom.com/wiki/CR70_corvette/Legends
+  - name: CR90 corvette
+    cost: 1200000
+    class: Corvette
+    url: https://starwars.fandom.com/wiki/CR90_corvette
+  - name: CR90 corvette/Legends
+    cost: 3500000
+    class: Corvette
+    url: https://starwars.fandom.com/wiki/CR90_corvette/Legends
+  - name: CR92a Assassin-class corvette
+    cost: 2500000
+    class: Corvette
+    url: https://starwars.fandom.com/wiki/CR92a_Assassin-class_corvette
+  - name: Curich-class shuttle
+    cost: 130000
+    class: Transport
+    url: https://starwars.fandom.com/wiki/Curich-class_shuttle
+  - name: Delta-class T-3c shuttle
+    cost: 160000
+    class: Shuttle
+    url: https://starwars.fandom.com/wiki/Delta-class_T-3c_shuttle
+  - name: DP20 gunship
+    cost: 3200000
+    class: Frigate
+    url: https://starwars.fandom.com/wiki/DP20_gunship
+  - name: DP20 gunship/Legends
+    cost: 4800000
+    class: Frigate Corvette
+    url: https://starwars.fandom.com/wiki/DP20_gunship/Legends
+  - name: Dreadnaught-class heavy cruiser/Legends
+    cost: 7200000
+    class: Heavy cruiser
+    url: https://starwars.fandom.com/wiki/Dreadnaught-class_heavy_cruiser/Legends
+  - name: Dreadnought-class heavy cruiser
+    cost: 7200000
+    class: Heavy cruiser
+    url: https://starwars.fandom.com/wiki/Dreadnought-class_heavy_cruiser
+  - name: EF76 Nebulon-B escort frigate
+    cost: 8500000
+    class: Frigate
+    url: https://starwars.fandom.com/wiki/EF76_Nebulon-B_escort_frigate
+  - name: EF76 Nebulon-B escort frigate/Legends
+    cost: 8500000
+    class: Frigate
+    url: https://starwars.fandom.com/wiki/EF76_Nebulon-B_escort_frigate/Legends
+  - name: Eta-class supply barge
+    cost: 750000
+    class: Supply ship
+    url: https://starwars.fandom.com/wiki/Eta-class_supply_barge
+  - name: FireStar II-class Orbital Defense Platform
+    cost: 8500000
+    class: Battle station
+    url: https://starwars.fandom.com/wiki/FireStar_II-class_Orbital_Defense_Platform
+  - name: Gamma-class assault shuttle/Legends
+    cost: 850000
+    class: Assault shuttle
+    url: https://starwars.fandom.com/wiki/Gamma-class_assault_shuttle/Legends
+  - name: GAT-12 Skipray Blastboat
+    cost: 285000
+    class: Heavy starfighter
+    url: https://starwars.fandom.com/wiki/GAT-12_Skipray_Blastboat
+  - name: Gladiator I
+    cost: 34000000
+    class: Escort frigate-classed Star Destroyer
+    url: https://starwars.fandom.com/wiki/Gladiator_I
+  - name: Gladiator-class Star Destroyer
+    cost: 34000000
+    class: Escort frigate-classed Star Destroyer
+    url: https://starwars.fandom.com/wiki/Gladiator-class_Star_Destroyer
+  - name: Gladiator-class Star Destroyer/Legends
+    cost: 34000000
+    class: Star Destroyer
+    url: https://starwars.fandom.com/wiki/Gladiator-class_Star_Destroyer/Legends
+  - name: Gozanti-class cruiser
+    cost: 200000
+    class: Light cruiser
+    url: https://starwars.fandom.com/wiki/Gozanti-class_cruiser
+  - name: GR-75 medium transport/Legends
+    cost: 350000
+    class: Medium transport
+    url: https://starwars.fandom.com/wiki/GR-75_medium_transport/Legends
+  - name: Grek-class troop shuttle/Legends
+    cost: 40000
+    class: Armored shuttle
+    url: https://starwars.fandom.com/wiki/Grek-class_troop_shuttle/Legends
+  - name: I-7 Howlrunner
+    cost: 165000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/I-7_Howlrunner
+  - name: IF-120 landing craft
+    cost: 290000
+    class: Landing craft
+    url: https://starwars.fandom.com/wiki/IF-120_landing_craft
+  - name: Immobilizer 418 Interdictor-class Heavy Cruiser
+    cost: 52240000
+    class: Cruiser
+    url: https://starwars.fandom.com/wiki/Immobilizer_418_Interdictor-class_Heavy_Cruiser
+  - name: Imperial Armored Transport
+    cost: 240000
+    class: Transport
+    url: https://starwars.fandom.com/wiki/Imperial_Armored_Transport
+  - name: Imperial Gozanti-class cruiser
+    cost: 200000
+    class: Armored freighter Cruiser / transport Light cruiser
+    url: https://starwars.fandom.com/wiki/Imperial_Gozanti-class_cruiser
+  - name: Imperial I-class Star Destroyer
+    cost: 150000000
+    class: Star Destroyer
+    url: https://starwars.fandom.com/wiki/Imperial_I-class_Star_Destroyer
+  - name: Imperial I-class Star Destroyer/Legends
+    cost: 150000000
+    class: Star Destroyer
+    url: https://starwars.fandom.com/wiki/Imperial_I-class_Star_Destroyer/Legends
+  - name: Imperial II-class Star Destroyer
+    cost: 150000000
+    class: Star Destroyer
+    url: https://starwars.fandom.com/wiki/Imperial_II-class_Star_Destroyer
+  - name: Imperial II-class Star Destroyer/Legends
+    cost: 145670000
+    class: Star Destroyer
+    url: https://starwars.fandom.com/wiki/Imperial_II-class_Star_Destroyer/Legends
+  - name: Interdictor-class heavy cruiser
+    cost: 15400000
+    class: Heavy cruiser-classed Star Destroyer
+    url: https://starwars.fandom.com/wiki/Interdictor-class_heavy_cruiser
+  - name: Interdictor-class Star Destroyer/Legends
+    cost: 175000000
+    class: Star Destroyer
+    url: https://starwars.fandom.com/wiki/Interdictor-class_Star_Destroyer/Legends
+  - name: IPV-1 System Patrol Craft
+    cost: 4000000
+    class: Inter-system patrol / customs craft
+    url: https://starwars.fandom.com/wiki/IPV-1_System_Patrol_Craft
+  - name: IR-3F-class light frigate/Legends
+    cost: 2500000
+    class: Light frigate
+    url: https://starwars.fandom.com/wiki/IR-3F-class_light_frigate/Legends
+  - name: ISP-6 Imperial Shuttle Pod
+    cost: 15000
+    class: Shuttle pod
+    url: https://starwars.fandom.com/wiki/ISP-6_Imperial_Shuttle_Pod
+  - name: Kappa-class shuttle
+    cost: 110000
+    class: Shuttle
+    url: https://starwars.fandom.com/wiki/Kappa-class_shuttle
+  - name: Katarn-class boarding shuttle
+    cost: 100000
+    class: Boarding shuttle
+    url: https://starwars.fandom.com/wiki/Katarn-class_boarding_shuttle
+  - name: LAAT/le patrol gunship
+    cost: 62000
+    class: Gunship
+    url: https://starwars.fandom.com/wiki/LAAT/le_patrol_gunship
+  - name: Lambda-class T-4a shuttle
+    cost: 140000
+    class: Multi-purpose transport
+    url: https://starwars.fandom.com/wiki/Lambda-class_T-4a_shuttle
+  - name: Lambda-class T-4a shuttle/Legends
+    cost: 240000
+    class: Armed government transport shuttle
+    url: https://starwars.fandom.com/wiki/Lambda-class_T-4a_shuttle/Legends
+  - name: Lancer-class frigate/Legends
+    cost: 4760000
+    class: Frigate
+    url: https://starwars.fandom.com/wiki/Lancer-class_frigate/Legends
+  - name: Lictor-class dungeon ship
+    cost: 7800000
+    class: Dungeon ship
+    url: https://starwars.fandom.com/wiki/Lictor-class_dungeon_ship
+  - name: Lone Scout-A
+    cost: 125000
+    class: Scouting
+    url: https://starwars.fandom.com/wiki/Lone_Scout-A
+  - name: Low Altitude Assault Transport/carrier
+    cost: 175000
+    class: Low Altitude Assault Transport / carrier
+    url: https://starwars.fandom.com/wiki/Low_Altitude_Assault_Transport/carrier
+  - name: Low Altitude Assault Transport/carrier/Legends
+    cost: 58000
+    class: Repulsorlift gunship
+    url: https://starwars.fandom.com/wiki/Low_Altitude_Assault_Transport/carrier/Legends
+  - name: Low Altitude Assault Transport/infantry
+    cost: 85000
+    class: Gunship Transport Starfighter
+    url: https://starwars.fandom.com/wiki/Low_Altitude_Assault_Transport/infantry
+  - name: M3-A Scyk interceptor
+    cost: 55000
+    class: Interceptor
+    url: https://starwars.fandom.com/wiki/M3-A_Scyk_interceptor
+  - name: Maelstrom-class battle cruiser
+    cost: 158000000
+    class: Battlecruiser
+    url: https://starwars.fandom.com/wiki/Maelstrom-class_battle_cruiser
+  - name: Maelstrom-class battle cruiser/Legends
+    cost: 158000000
+    class: Battlecruiser
+    url: https://starwars.fandom.com/wiki/Maelstrom-class_battle_cruiser/Legends
+  - name: MC80A Home One Type Heavy Star Cruiser
+    cost: 112000000
+    class: Heavy Star Cruiser
+    url: https://starwars.fandom.com/wiki/MC80A_Home_One_Type_Heavy_Star_Cruiser
+  - name: MedStar-class frigate/Legends
+    cost: 4875000
+    class: Medical frigate
+    url: https://starwars.fandom.com/wiki/MedStar-class_frigate/Legends
+  - name: MRX-BR Pacifier
+    cost: 170000
+    class: Scout vessel
+    url: https://starwars.fandom.com/wiki/MRX-BR_Pacifier
+  - name: Neutron Star-class bulk cruiser carrier conversion
+    cost: 5000000
+    class: Bulk cruiser
+    url: https://starwars.fandom.com/wiki/Neutron_Star-class_bulk_cruiser_carrier_conversion
+  - name: Neutron Star-class bulk cruiser/Legends
+    cost: 5000000
+    class: Bulk cruiser
+    url: https://starwars.fandom.com/wiki/Neutron_Star-class_bulk_cruiser/Legends
+  - name: Nu-class attack shuttle/Legends
+    cost: 85000
+    class: Shuttle
+    url: https://starwars.fandom.com/wiki/Nu-class_attack_shuttle/Legends
+  - name: Nu-class attack/transport shuttle
+    cost: 85000
+    class: Attack shuttle Multi-purpose transport
+    url: https://starwars.fandom.com/wiki/Nu-class_attack/transport_shuttle
+  - name: Onager-class Star Destroyer
+    cost: 376500000
+    class: Cruiser-classed Star Destroyer Superweapon
+    url: https://starwars.fandom.com/wiki/Onager-class_Star_Destroyer
+  - name: PB-950 patrol boat
+    cost: 150000
+    class: Light corvette
+    url: https://starwars.fandom.com/wiki/PB-950_patrol_boat
+  - name: Praetor Mark II-class battlecruiser
+    cost: 700000000
+    class: Battlecruiser
+    url: https://starwars.fandom.com/wiki/Praetor_Mark_II-class_battlecruiser
+  - name: Probe-Mate hyperspace pod
+    cost: 22500
+    class: Hyperdrive pod
+    url: https://starwars.fandom.com/wiki/Probe-Mate_hyperspace_pod
+  - name: Quasar Fire-class cruiser-carrier
+    cost: 1750000
+    class: Cruiser / light carrier Cruiser-carrier
+    url: https://starwars.fandom.com/wiki/Quasar_Fire-class_cruiser-carrier
+  - name: Raider I-class corvette
+    cost: 3000000
+    class: Corvette
+    url: https://starwars.fandom.com/wiki/Raider_I-class_corvette
+  - name: Raider-class corvette/Legends
+    cost: 3000000
+    class: Corvette
+    url: https://starwars.fandom.com/wiki/Raider-class_corvette/Legends
+  - name: S-46I Medium Scout Ship
+    cost: 524000
+    class: Scout ship
+    url: https://starwars.fandom.com/wiki/S-46I_Medium_Scout_Ship
+  - name: Scimitar assault bomber
+    cost: 120000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/Scimitar_assault_bomber
+  - name: Secutor-class Star Destroyer
+    cost: 200000000
+    class: Star Destroyer Battlecarrier Battlecruiser
+    url: https://starwars.fandom.com/wiki/Secutor-class_Star_Destroyer
+  - name: Secutor-class Star Destroyer/Legends
+    cost: 200000000
+    class: Star Destroyer
+    url: https://starwars.fandom.com/wiki/Secutor-class_Star_Destroyer/Legends
+  - name: Sentinel-class landing craft
+    cost: 240000
+    class: Assault shuttle
+    url: https://starwars.fandom.com/wiki/Sentinel-class_landing_craft
+  - name: Sentinel-class landing craft/Legends
+    cost: 240000
+    class: Landing craft
+    url: https://starwars.fandom.com/wiki/Sentinel-class_landing_craft/Legends
+  - name: Skywatcher-class deep space scout ship
+    cost: 120000
+    class: Transport
+    url: https://starwars.fandom.com/wiki/Skywatcher-class_deep_space_scout_ship
+  - name: Sovereign-class Super Star Destroyer
+    cost: 2500000000
+    class: Super Star Destroyer
+    url: https://starwars.fandom.com/wiki/Sovereign-class_Super_Star_Destroyer
+  - name: SS-39 Space Skiff
+    cost: 12500
+    class: Space skiff
+    url: https://starwars.fandom.com/wiki/SS-39_Space_Skiff
+  - name: Star Galleon-class frigate
+    cost: 17503500
+    class: Frigate
+    url: https://starwars.fandom.com/wiki/Star_Galleon-class_frigate
+  - name: Strike-class medium cruiser
+    cost: 17000000
+    class: Medium cruiser
+    url: https://starwars.fandom.com/wiki/Strike-class_medium_cruiser
+  - name: Super Transport XI
+    cost: 35000000
+    class: Container shiphe
+    url: https://starwars.fandom.com/wiki/Super_Transport_XI
+  - name: Surveyor-class reconnaissance frigate
+    cost: 9600000
+    class: Frigate
+    url: https://starwars.fandom.com/wiki/Surveyor-class_reconnaissance_frigate
+  - name: Surveyor-class reconnaissance frigate/Legends
+    cost: 9600000
+    class: Frigate
+    url: https://starwars.fandom.com/wiki/Surveyor-class_reconnaissance_frigate/Legends
+  - name: Tartan-class patrol cruiser
+    cost: 4200000
+    class: Patrol cruiser
+    url: https://starwars.fandom.com/wiki/Tartan-class_patrol_cruiser
+  - name: TIE Advanced x1
+    cost: 160000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE_Advanced_x1
+  - name: TIE boarding craft
+    cost: 150000
+    class: Transport Shuttle
+    url: https://starwars.fandom.com/wiki/TIE_boarding_craft
+  - name: TIE/ad starfighter
+    cost: 400000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/ad_starfighter
+  - name: TIE/ag "Aggressor" Starfighter
+    cost: 75000
+    class: Medium strike starfighter
+    url: https://starwars.fandom.com/wiki/TIE/ag_%22Aggressor%22_Starfighter
+  - name: TIE/ag "Aggressor" Starfighter/Legends
+    cost: 75000
+    class: Hybrid starfighter / bomber
+    url: https://starwars.fandom.com/wiki/TIE/ag_%22Aggressor%22_Starfighter/Legends
+  - name: TIE/ca "Punisher" Starfighter
+    cost: 253000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/ca_%22Punisher%22_Starfighter
+  - name: TIE/ca Punisher/Legends
+    cost: 253000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/ca_Punisher/Legends
+  - name: TIE/d "Defender" Multi-Role Starfighter
+    cost: 300000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/d_%22Defender%22_Multi-Role_Starfighter
+  - name: TIE/d "Defender" Multi-Role Starfighter/Legends
+    cost: 300000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/d_%22Defender%22_Multi-Role_Starfighter/Legends
+  - name: TIE/D Defender Elite
+    cost: 310000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/D_Defender_Elite
+  - name: TIE/hu "Hunter" Multi-Role Starfighter
+    cost: 100000
+    class: Multi-role Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/hu_%22Hunter%22_Multi-Role_Starfighter
+  - name: TIE/IN interceptor
+    cost: 120000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/IN_interceptor
+  - name: TIE/IN interceptor/Legends
+    cost: 75000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/IN_interceptor/Legends
+  - name: TIE/ln space superiority starfighter
+    cost: 60000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/ln_space_superiority_starfighter
+  - name: TIE/ln space superiority starfighter/Legends
+    cost: 60000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/ln_space_superiority_starfighter/Legends
+  - name: TIE/mg Mining Guild starfighter
+    cost: 40000
+    class: Modified TIE / ln space superiority starfighter
+    url: https://starwars.fandom.com/wiki/TIE/mg_Mining_Guild_starfighter
+  - name: TIE/ph "Phantom" Multi-Role Stealth Starfighter
+    cost: 365000
+    class: Stealth starfighter
+    url: https://starwars.fandom.com/wiki/TIE/ph_%22Phantom%22_Multi-Role_Stealth_Starfighter
+  - name: TIE/ph "Phantom" Multi-Role Stealth Starfighter/Legends
+    cost: 365000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/ph_%22Phantom%22_Multi-Role_Stealth_Starfighter/Legends
+  - name: TIE/rb heavy starfighter
+    cost: 90000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/rb_heavy_starfighter
+  - name: TIE/rp Reaper attack lander
+    cost: 140000
+    class: Dropship Troop carrier
+    url: https://starwars.fandom.com/wiki/TIE/rp_Reaper_attack_lander
+  - name: TIE/sa tactical bomber
+    cost: 150000
+    class: Light bomber
+    url: https://starwars.fandom.com/wiki/TIE/sa_tactical_bomber
+  - name: TIE/sh shuttle
+    cost: 150000
+    class: Shuttle
+    url: https://starwars.fandom.com/wiki/TIE/sh_shuttle
+  - name: TIE/sh VIP shuttle
+    cost: 120000
+    class: Priority personnel shuttle
+    url: https://starwars.fandom.com/wiki/TIE/sh_VIP_shuttle
+  - name: TIE/sk x1 experimental air superiority fighter
+    cost: 50000
+    class: Atmospheric fighter
+    url: https://starwars.fandom.com/wiki/TIE/sk_x1_experimental_air_superiority_fighter
+  - name: TIE/sr starfighter
+    cost: 148000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/sr_starfighter
+  - name: Ton-Falk-class escort carrier
+    cost: 3500000
+    class: Heavy carrier
+    url: https://starwars.fandom.com/wiki/Ton-Falk-class_escort_carrier
+  - name: Torpedo Sphere/Legends
+    cost: 327830000
+    class: Dedicated siege platform
+    url: https://starwars.fandom.com/wiki/Torpedo_Sphere/Legends
+  - name: Tribune-class shuttle
+    cost: 150000
+    class: Shuttle
+    url: https://starwars.fandom.com/wiki/Tribune-class_shuttle
+  - name: V-19 Torrent starfighter
+    cost: 75000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/V-19_Torrent_starfighter
+  - name: V-19 Torrent starfighter/Legends
+    cost: 135000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/V-19_Torrent_starfighter/Legends
+  - name: Venator-class Star Destroyer/Legends
+    cost: 59000000
+    class: Star Destroyer
+    url: https://starwars.fandom.com/wiki/Venator-class_Star_Destroyer/Legends
+  - name: Vibre-class assault cruiser
+    cost: 2259000
+    class: Assault cruiser
+    url: https://starwars.fandom.com/wiki/Vibre-class_assault_cruiser
+  - name: Victory I-class Star Destroyer/Legends
+    cost: 57000000
+    class: Star Destroyer
+    url: https://starwars.fandom.com/wiki/Victory_I-class_Star_Destroyer/Legends
+  - name: Victory II-class Star Destroyer
+    cost: 50000000
+    class: Star Destroyer
+    url: https://starwars.fandom.com/wiki/Victory_II-class_Star_Destroyer
+  - name: Victory II-class Star Destroyer/Legends
+    cost: 50000000
+    class: Star Destroyer
+    url: https://starwars.fandom.com/wiki/Victory_II-class_Star_Destroyer/Legends
+  - name: Vigil-class corvette
+    cost: 3500000
+    class: Corvette
+    url: https://starwars.fandom.com/wiki/Vigil-class_corvette
+  - name: Vindicator-class heavy cruiser/Legends
+    cost: 10400000
+    class: Heavy cruiser
+    url: https://starwars.fandom.com/wiki/Vindicator-class_heavy_cruiser/Legends
+  - name: VT-49 Decimator
+    cost: 160000
+    class: Raiding vessel Starfighter
+    url: https://starwars.fandom.com/wiki/VT-49_Decimator
+  - name: VT-49 Decimator/Legends
+    cost: 160000
+    class: Assault ship
+    url: https://starwars.fandom.com/wiki/VT-49_Decimator/Legends
+  - name: X-26 StarHaul
+    cost: 400000
+    class: Space barge
+    url: https://starwars.fandom.com/wiki/X-26_StarHaul
+  - name: Xiytiar-class heavy transport/Legends
+    cost: 800000
+    class: Transport
+    url: https://starwars.fandom.com/wiki/Xiytiar-class_heavy_transport/Legends
+  - name: Y-4 Transport
+    cost: 250000
+    class: Military Transport
+    url: https://starwars.fandom.com/wiki/Y-4_Transport
+  - name: Zeta-class Heavy Cargo Shuttle
+    cost: 95000
+    class: Cargo shuttle
+    url: https://starwars.fandom.com/wiki/Zeta-class_Heavy_Cargo_Shuttle
+  - name: Executor
+    cost: 1143350000
+    class: Super Star Destroyer
+    url: https://starwars.fandom.com/wiki/Executor
+  - name: Stormtrooper
+    cost: 15000
+    class: Personnel
+    url: https://starwars.fandom.com/wiki/Stormtrooper
+  - name: Imperial Army Trooper
+    cost: 5000
+    class: Personnel
+    url: https://starwars.fandom.com/wiki/Imperial_Army_trooper
+  - name: DX-9 Stormtrooper Transport
+    cost: 160000
+    class: Assault shuttle
+    url: https://starwars.fandom.com/wiki/Delta-class_DX-9_stormtrooper_transport
+  - name: Repulsorcraft
+    cost: 40000
+    class: Repulsorlift Vehicle
+  - name: Heavy Repulsor Tank
+    cost: 50000
+    class: Repulsorlift Tank
+    url: https://starwars.fandom.com/wiki/Imperial-class_1-H_repulsortank/Legends
+  - name: ISB Agents
+    cost: 150000
+    class: Personnel
+    url: https://starwars.fandom.com/wiki/Imperial_Security_Bureau
+  - name: Death Trooper
+    cost: 100000
+    class: Personnel
+    url: https://starwars.fandom.com/wiki/Death_trooper
+  - name: AT AT
+    cost: 150000
+    class: Walker
+    url: https://starwars.fandom.com/wiki/All_Terrain_Armored_Transport
+  - name: AT ST
+    cost: 75000
+    class: Walker
+    url: https://starwars.fandom.com/wiki/All_Terrain_Scout_Transport
+  - name: K79-S80 Imperial Troop Transport
+    cost: 70000
+    class: Repulsorlift Vehicle
+    url: https://starwars.fandom.com/wiki/K79-S80_Imperial_Troop_Transport
+  - name: 74-Z speeder bike
+    cost: 3000
+    class: Repulsorlift Vehicle
+    url: https://starwars.fandom.com/wiki/74-Z_speeder_bike
+  - name: PX-4 Mobile Command Base
+    cost: 300000
+    class: Ground Vehicle
+    url: https://starwars.fandom.com/wiki/PX-4_Mobile_Command_Base
+  - name: IGV-55
+    cost: 1000000
+    class: Surveillance Vessel
+    url: https://starwars.fandom.com/wiki/IGV-55_surveillance_vessel
+  - name: Viper probe droid
+    cost: 12500
+    class: Droid
+    url: https://starwars.fandom.com/wiki/Viper_probe_droid/Legends
+  - name: TIE/fc Fire Control Starfighter
+    cost: 70000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/fc_starfighter
+  - name: Bellator-class dreadnought
+    cost: 700000000
+    class: Star Dreadnought
+    url: https://starwars.fandom.com/wiki/Bellator-class_dreadnought/Legends
+  - name: Imperial Assassin
+    cost: 300000
+    class: Personnel
+  - name: Modular Taskforce Cruiser (Hospital)
+    cost: 3250000
+    class: Medical cruiser
+    url: https://starwars.fandom.com/wiki/Modular_taskforce_cruiser
+  - name: DP20 gunship/Used
+    cost: 2400000
+    class: Frigate
+    url: https://starwars.fandom.com/wiki/DP20_gunship
+  - name: Gozanti-class cruiser/Used
+    cost: 50000
+    class: Light cruiser
+    url: https://starwars.fandom.com/wiki/Gozanti-class_cruiser
+  - name: Imperial Gozanti-class cruiser/Used
+    cost: 100000
+    class: Light cruiser
+    url: https://starwars.fandom.com/wiki/Imperial_Gozanti-class_cruiser
+  - name: TIE/ln space superiority starfighter/Used
+    cost: 25000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/TIE/ln_space_superiority_starfighter
+  - name: Aggressive ReConnaissance-170 starfighter/Used
+    cost: 70000
+    class: Starfighter
+    url: https://starwars.fandom.com/wiki/Aggressive_ReConnaissance-170_starfighter
+  - name: GAT-12 Skipray Blastboat/Used
+    cost: 150000
+    class: Heavy starfighter
+    url: https://starwars.fandom.com/wiki/GAT-12_Skipray_Blastboat
+  - name: TIE/sa tactical bomber/Used
+    cost: 60000
+    class: Light bomber
+    url: https://starwars.fandom.com/wiki/TIE/sa_tactical_bomber
+  - name: TIE boarding craft/Used
+    cost: 60000
+    class: Transport
+    url: https://starwars.fandom.com/wiki/TIE_boarding_craft
+  - name: 580 Freighter
+    cost: 20000
+    class: Light freighter
+    url: https://starwars.fandom.com/wiki/580-series_freighter
+  - name: YT-2400 light freighter/Used
+    cost: 38000
+    class: Light freighter
+    url: https://starwars.fandom.com/wiki/YT-2400_light_freighter
+  - name: Trail Cam Satellite
+    cost: 2000
+    class: Surveillance satellite
+  - name: BX-series droid commando
+    cost: 17900
+    class: Combat droid
+    url: https://starwars.fandom.com/wiki/BX-series_droid_commando
+  - name: M880 sonic grenade
+    cost: 250
+    class: Weapon
+    url: https://starwars.fandom.com/wiki/Sonic_grenade
+  - name: 8-Gauge Scattergun
+    cost: 550
+    class: Weapon
+    url: https://starwars.fandom.com/wiki/Scatter_gun
+  - name: Electrified Net Gun
+    cost: 600
+    class: Weapon
+  - name: IG-100 MagnaGuard
+    cost: 90000
+    class: Combat droid
+    url: https://starwars.fandom.com/wiki/IG-100_MagnaGuard
+  - name: T-series tactical droid
+    cost: 8000
+    class: Droid
+    url: https://starwars.fandom.com/wiki/T-series_tactical_droid
+  - name: SP-4 analysis droid
+    cost: 3100
+    class: Droid
+    url: https://starwars.fandom.com/wiki/SP-4_analysis_droid
+  - name: LaVr Chariot command speeder
+    cost: 40000
+    class: Command speeder
+    url: https://starwars.fandom.com/wiki/LaVr_Chariot_command_speeder
+  - name: A-A5 heavy speeder truck
+    cost: 30500
+    class: Heavy speeder truck
+    url: https://starwars.fandom.com/wiki/A-A5_heavy_speeder_truck
+  - name: Arrow-23 landspeeder
+    cost: 10000
+    class: Landspeeder
+    url: https://starwars.fandom.com/wiki/Arrow-23_landspeeder
+  - name: I-M medium tank
+    cost: 45000
+    class: Medium tank
+  - name: I-H heavy tank
+    cost: 50000
+    class: Heavy tank
+  - name: TX-130 Saber-class fighter tank
+    cost: 42000
+    class: Fighter tank
+    url: https://starwars.fandom.com/wiki/TX-130_Saber-class_fighter_tank
+  - name: CAV-PX10
+    cost: 25000
+    class: Armored personnel carrier
+  - name: AV-7 Antivehicle Cannon
+    cost: 14000
+    class: Artillery
+    url: https://starwars.fandom.com/wiki/AV-7_Antivehicle_Cannon
+  - name: Mortar
+    cost: 2500
+    class: Artillery
+  - name: E-Web heavy repeating blaster
+    cost: 8000
+    class: Heavy weapon
+    url: https://starwars.fandom.com/wiki/E-Web_heavy_repeating_blaster
+  - name: TC-21 light repeating blaster
+    cost: 2000
+    class: Light repeating blaster
+  - name: Generic light freighter (ISB)
+    cost: 300000
+    class: Light freighter
+    url: https://starwars.fandom.com/wiki/YT-2400_light_freighter
+  - name: KX-series security droid
+    cost: 50000
+    class: Combat droid
+    url: https://starwars.fandom.com/wiki/KX-series_security_droid
+  - name: Carrack Light Cruiser
+    cost: 5000000
+    class: Light cruiser
+    url: https://starwars.fandom.com/wiki/Carrack-class_light_cruiser/Legends
+  - name: Y-85 Titan Dropship
+    cost: 150000
+    class: Dropship Troop carrier
+    url: https://starwars.fandom.com/wiki/Y-85_Titan_dropship/Legends
+  - name: Death Star
+    cost: 1000000000000
+    class: Super Weapon
+  - name: Theta-class Barge
+    cost: 150000
+    class: Landing craft
+    url: https://starwars.fandom.com/wiki/Theta-class_barge/Legends
+  - name: Evakmar-KDY transport (Consolidator)
+    cost: 150000000
+    class: Assault ship
+    url: https://starwars.fandom.com/wiki/Evakmar-KDY_transport
+  - name: Class four container transport
+    cost: 500000
+    class: Multi-purpose transport
+    url: https://starwars.fandom.com/wiki/Class_four_container_transport
+units:
+  - name: TIE Wing
+    components:
+      - type: ship
+        name: TIE/ln space superiority starfighter
+        quantity: 48
+      - type: ship
+        name: TIE/IN interceptor
+        quantity: 12
+      - type: ship
+        name: TIE/sa tactical bomber
+        quantity: 12
+  - name: Vindicator Task Force
+    components:
+      - type: ship
+        name: Vindicator-class heavy cruiser/Legends
+        quantity: 3
+      - type: ship
+        name: Ton-Falk-class escort carrier
+        quantity: 1
+      - type: unit
+        name: TIE Wing
+        quantity: 3
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 12
+      - type: ship
+        name: DX-9 Stormtrooper Transport
+        quantity: 12
+  - name: ISD II
+    components:
+      - type: ship
+        name: Imperial II-class Star Destroyer
+        quantity: 1
+      - type: unit
+        name: TIE Wing
+        quantity: 1
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 8
+      - type: ship
+        name: DX-9 Stormtrooper Transport
+        quantity: 15
+      - type: ship
+        name: Theta-class Barge
+        quantity: 2
+  - name: Vindicator/TIE
+    components:
+      - type: ship
+        name: Vindicator-class heavy cruiser/Legends
+        quantity: 1
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 4
+      - type: unit
+        name: TIE Wing
+        quantity: 1
+  - name: Vindicator/Ground
+    components:
+      - type: ship
+        name: Vindicator-class heavy cruiser/Legends
+        quantity: 1
+      - type: ship
+        name: TIE/ln space superiority starfighter
+        quantity: 12
+      - type: ship
+        name: Stormtrooper
+        quantity: 400
+      - type: ship
+        name: DX-9 Stormtrooper Transport
+        quantity: 12
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 4
+      - type: ship
+        name: IF-120 landing craft
+        quantity: 4
+      - type: ship
+        name: Repulsorcraft
+        quantity: 16
+      - type: ship
+        name: 74-Z speeder bike
+        quantity: 24
+      - type: ship
+        name: Heavy Repulsor Tank
+        quantity: 4
+  - name: Ton Falk
+    components:
+      - type: ship
+        name: Ton-Falk-class escort carrier
+        quantity: 1
+      - type: unit
+        name: TIE Wing
+        quantity: 1
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 4
+      - type: ship
+        name: Sentinel-class landing craft
+        quantity: 2
+  - name: Immobilizer
+    components:
+      - type: ship
+        name: Immobilizer 418 Interdictor-class Heavy Cruiser
+        quantity: 1
+      - type: ship
+        name: TIE/ln space superiority starfighter
+        quantity: 24
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 4
+  - name: System Defense Force
+    components:
+      - type: unit
+        name: TIE Wing
+        quantity: 2
+      - type: unit
+        name: Gozanti Patrol Ship
+        quantity: 12
+  - name: Onager
+    components:
+      - type: ship
+        name: Onager-class Star Destroyer
+        quantity: 1
+      - type: ship
+        name: TIE/ln space superiority starfighter
+        quantity: 36
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 6
+  - name: Imperial System Army
+    components:
+      - type: ship
+        name: Imperial Army Trooper
+        quantity: 293686
+      - type: ship
+        name: Repulsorcraft
+        quantity: 16660
+      - type: ship
+        name: Heavy Repulsor Tank
+        quantity: 3498
+  - name: Hyperspace Starfighter Wing
+    components:
+      - type: ship
+        name: TIE/d "Defender" Multi-Role Starfighter
+        quantity: 48
+      - type: ship
+        name: Alpha-class Xg-1 Star Wing
+        quantity: 24
+  - name: Imperial Security Bureau
+    description: >-
+      This unit is tasked with maintaining internal security as well as detecting and eliminating threats to the
+      Empire.  They use clandestine ISB Agents spread around the sector to gather intelligence, as well as larger
+      intelligence cells for specific sector problems. They have at their command a battalion of highly trained Death
+      Troopers they can call on for direct action against threats, as well as a cadre of black ops Imperial Assassins,
+      trained to find and kill high value targets.  
+
+
+
+      The have a variety of mobility assets including nondescript light freighters, Imperial Lambda shuttles, and
+      stealthy Delta T-3c shuttles.
+    components:
+      - type: ship
+        name: ISB Agents
+        quantity: 4000
+      - type: ship
+        name: Death Trooper
+        quantity: 600
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 50
+      - type: ship
+        name: TIE/ph "Phantom" Multi-Role Stealth Starfighter
+        quantity: 60
+      - type: ship
+        name: Imperial Assassin
+        quantity: 50
+      - type: ship
+        name: Delta-class T-3c shuttle
+        quantity: 10
+      - type: ship
+        name: Generic light freighter (ISB)
+        quantity: 100
+      - type: ship
+        name: KX-series security droid
+        quantity: 300
+      - type: ship
+        name: IGV-55
+        quantity: 50
+  - name: Logistics
+    components:
+      - type: ship
+        name: Gozanti-class cruiser
+        quantity: 400
+      - type: ship
+        name: Zeta-class Heavy Cargo Shuttle
+        quantity: 300
+      - type: ship
+        name: Sentinel-class landing craft
+        quantity: 300
+      - type: ship
+        name: Class four container transport
+        quantity: 200
+  - name: Stormtrooper Legion
+    components:
+      - type: ship
+        name: Stormtrooper
+        quantity: 8200
+      - type: ship
+        name: AT AT
+        quantity: 20
+      - type: ship
+        name: AT ST
+        quantity: 30
+      - type: ship
+        name: K79-S80 Imperial Troop Transport
+        quantity: 15
+      - type: ship
+        name: 74-Z speeder bike
+        quantity: 100
+  - name: Imperial Army Line Corps
+    components:
+      - type: ship
+        name: Imperial Army Trooper
+        quantity: 69199
+      - type: ship
+        name: Repulsorcraft
+        quantity: 2599
+      - type: ship
+        name: Heavy Repulsor Tank
+        quantity: 371
+  - name: Imperial Army Armored Battlegroup
+    components:
+      - type: ship
+        name: Imperial Army Trooper
+        quantity: 16346
+      - type: ship
+        name: Repulsorcraft
+        quantity: 1132
+      - type: ship
+        name: Heavy Repulsor Tank
+        quantity: 318
+  - name: Imperial Army Line Battlegroup
+    components:
+      - type: ship
+        name: Imperial Army Trooper
+        quantity: 14410
+      - type: ship
+        name: Repulsorcraft
+        quantity: 511
+      - type: ship
+        name: Heavy Repulsor Tank
+        quantity: 53
+  - name: Stormtrooper Assault Battalion
+    components:
+      - type: ship
+        name: Stormtrooper
+        quantity: 1000
+      - type: ship
+        name: AT AT
+        quantity: 4
+      - type: ship
+        name: AT ST
+        quantity: 8
+      - type: ship
+        name: K79-S80 Imperial Troop Transport
+        quantity: 8
+      - type: ship
+        name: 74-Z speeder bike
+        quantity: 40
+      - type: ship
+        name: Repulsorcraft
+        quantity: 20
+  - name: Light Attack Wing
+    components:
+      - type: ship
+        name: TIE/sa tactical bomber
+        quantity: 48
+      - type: ship
+        name: TIE/ln space superiority starfighter
+        quantity: 12
+      - type: ship
+        name: TIE/fc Fire Control Starfighter
+        quantity: 12
+  - name: Air Mobility Wing
+    components:
+      - type: ship
+        name: LAAT/le patrol gunship
+        quantity: 36
+      - type: ship
+        name: Grek-class troop shuttle/Legends
+        quantity: 36
+  - name: Imperial Survey
+    description: >-
+      This unit constantly surveys all areas of the sector looking for Rebel, and illegal activity. They are not a
+      direct action force.
+    components:
+      - type: ship
+        name: Viper probe droid
+        quantity: 1000
+      - type: ship
+        name: Skywatcher-class deep space scout ship
+        quantity: 800
+      - type: ship
+        name: S-46I Medium Scout Ship
+        quantity: 100
+  - name: Gozanti Patrol Ship
+    components:
+      - type: ship
+        name: Imperial Gozanti-class cruiser
+        quantity: 1
+      - type: ship
+        name: TIE boarding craft
+        quantity: 2
+      - type: ship
+        name: TIE/ln space superiority starfighter
+        quantity: 2
+  - name: Victory I
+    components:
+      - type: ship
+        name: Victory I-class Star Destroyer/Legends
+        quantity: 1
+      - type: ship
+        name: TIE/ln space superiority starfighter
+        quantity: 24
+  - name: Assertor
+    components:
+      - type: ship
+        name: Assertor-class Star Dreadnought
+        quantity: 1
+      - type: unit
+        name: TIE Wing
+        quantity: 2
+  - name: Vigil
+    components:
+      - type: ship
+        name: Vigil-class corvette
+        quantity: 1
+      - type: ship
+        name: TIE/ln space superiority starfighter
+        quantity: 12
+      - type: ship
+        name: DX-9 Stormtrooper Transport
+        quantity: 1
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 1
+  - name: Vigil Scout Group
+    components:
+      - type: unit
+        name: Vigil
+        quantity: 1
+      - type: unit
+        name: Gozanti Patrol Ship
+        quantity: 3
+      - type: ship
+        name: Skywatcher-class deep space scout ship
+        quantity: 6
+  - name: Cantwell Cruiser
+    components:
+      - type: ship
+        name: Cantwell-class Arrestor Cruiser
+        quantity: 1
+      - type: ship
+        name: TIE/ln space superiority starfighter
+        quantity: 24
+      - type: ship
+        name: TIE boarding craft
+        quantity: 4
+      - type: ship
+        name: DX-9 Stormtrooper Transport
+        quantity: 4
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 2
+  - name: Executor Super Star Destroyer
+    components:
+      - type: ship
+        name: Executor
+        quantity: 1
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 50
+      - type: ship
+        name: Sentinel-class landing craft
+        quantity: 50
+      - type: ship
+        name: Zeta-class Heavy Cargo Shuttle
+        quantity: 20
+      - type: ship
+        name: Y-85 Titan Dropship
+        quantity: 20
+      - type: unit
+        name: TIE Wing
+        quantity: 2
+  - name: Bellator Star Dreadnought
+    components:
+      - type: ship
+        name: Bellator-class dreadnought
+        quantity: 1
+      - type: unit
+        name: TIE Wing
+        quantity: 2
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 25
+      - type: ship
+        name: Sentinel-class landing craft
+        quantity: 25
+      - type: ship
+        name: Zeta-class Heavy Cargo Shuttle
+        quantity: 24
+  - name: Secutor
+    components:
+      - type: ship
+        name: Secutor-class Star Destroyer
+        quantity: 1
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 16
+      - type: ship
+        name: Sentinel-class landing craft
+        quantity: 16
+      - type: ship
+        name: Zeta-class Heavy Cargo Shuttle
+        quantity: 8
+      - type: unit
+        name: TIE Wing
+        quantity: 4
+  - name: TIE Interceptor Wing
+    components:
+      - type: ship
+        name: TIE/IN interceptor
+        quantity: 60
+      - type: ship
+        name: TIE/sa tactical bomber
+        quantity: 12
+  - name: ISD II Task Force
+    components:
+      - type: ship
+        name: Imperial II-class Star Destroyer
+        quantity: 1
+      - type: unit
+        name: TIE Interceptor Wing
+        quantity: 1
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 8
+      - type: ship
+        name: DX-9 Stormtrooper Transport
+        quantity: 15
+      - type: ship
+        name: Carrack Light Cruiser
+        quantity: 4
+  - name: Sector Fleet
+    components:
+      - type: unit
+        name: Vindicator/TIE
+        quantity: 80
+      - type: unit
+        name: Immobilizer
+        quantity: 10
+      - type: unit
+        name: ISD II Task Force
+        quantity: 5
+      - type: unit
+        name: Imperial Survey
+        quantity: 1
+      - type: unit
+        name: Logistics
+        quantity: 1
+      - type: unit
+        name: Cantwell Patrol Group
+        quantity: 200
+      - type: unit
+        name: Imperial Venator Task Force
+        quantity: 20
+  - name: Death Star
+    components:
+      - type: ship
+        name: Death Star
+        quantity: 1
+      - type: ship
+        name: DX-9 Stormtrooper Transport
+        quantity: 1000
+      - type: ship
+        name: Imperial Gozanti-class cruiser
+        quantity: 800
+      - type: ship
+        name: Sentinel-class landing craft
+        quantity: 1000
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 1000
+      - type: ship
+        name: Eta-class supply barge
+        quantity: 500
+      - type: ship
+        name: Zeta-class Heavy Cargo Shuttle
+        quantity: 1000
+      - type: unit
+        name: TIE Wing
+        quantity: 100
+  - name: Oversector Fleet
+    components:
+      - type: unit
+        name: Executor Super Star Destroyer
+        quantity: 1
+      - type: unit
+        name: ISD II Task Force
+        quantity: 20
+      - type: unit
+        name: Immobilizer
+        quantity: 20
+      - type: unit
+        name: Imperial Venator Task Force
+        quantity: 20
+      - type: unit
+        name: Consolidator
+        quantity: 4
+      - type: unit
+        name: Logistics
+        quantity: 1
+  - name: Cantwell Patrol Group
+    components:
+      - type: unit
+        name: Cantwell Cruiser
+        quantity: 1
+      - type: unit
+        name: Gozanti Patrol Ship
+        quantity: 3
+  - name: Imperial Venator Task Force
+    components:
+      - type: ship
+        name: Venator-class Star Destroyer/Legends
+        quantity: 1
+      - type: unit
+        name: TIE Interceptor Wing
+        quantity: 2
+      - type: ship
+        name: DX-9 Stormtrooper Transport
+        quantity: 15
+      - type: ship
+        name: Carrack Light Cruiser
+        quantity: 3
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 6
+      - type: ship
+        name: Theta-class Barge
+        quantity: 4
+  - name: Consolidator
+    components:
+      - type: ship
+        name: Evakmar-KDY transport (Consolidator)
+        quantity: 1
+      - type: unit
+        name: Light Attack Wing
+        quantity: 1
+  - name: Death Star Fleet
+    components:
+      - type: unit
+        name: Death Star
+        quantity: 1
+      - type: unit
+        name: ISD II Task Force
+        quantity: 100
+      - type: unit
+        name: Bellator Star Dreadnought
+        quantity: 10
+      - type: unit
+        name: Consolidator
+        quantity: 30
+      - type: unit
+        name: Secutor
+        quantity: 20
+      - type: unit
+        name: Interdictor Task Force
+        quantity: 20
+      - type: unit
+        name: Sovereign Super Star Destroyer
+        quantity: 1
+  - name: Interdictor Task Force
+    components:
+      - type: ship
+        name: Interdictor-class Star Destroyer/Legends
+        quantity: 1
+      - type: ship
+        name: TIE/IN interceptor
+        quantity: 16
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 8
+      - type: ship
+        name: DX-9 Stormtrooper Transport
+        quantity: 5
+      - type: ship
+        name: Carrack Light Cruiser
+        quantity: 4
+  - name: Sovereign Super Star Destroyer
+    components:
+      - type: ship
+        name: Sovereign-class Super Star Destroyer
+        quantity: 1
+      - type: unit
+        name: TIE Wing
+        quantity: 4
+      - type: unit
+        name: Hyperspace Starfighter Wing
+        quantity: 1
+      - type: unit
+        name: Light Attack Wing
+        quantity: 2
+      - type: ship
+        name: DX-9 Stormtrooper Transport
+        quantity: 50
+      - type: ship
+        name: Sentinel-class landing craft
+        quantity: 30
+      - type: ship
+        name: Theta-class Barge
+        quantity: 10
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 30
+  - name: Victory II Squadron
+    components:
+      - type: ship
+        name: Victory II-class Star Destroyer
+        quantity: 1
+      - type: ship
+        name: TIE/ln space superiority starfighter
+        quantity: 24
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 4
+  - name: Carrack
+    components:
+      - type: ship
+        name: Carrack Light Cruiser
+        quantity: 1
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 1
+  - name: Strike Cruiser
+    components:
+      - type: ship
+        name: Strike-class medium cruiser
+        quantity: 1
+      - type: ship
+        name: TIE/ln space superiority starfighter
+        quantity: 18
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 2
+  - name: Nebulon-B
+    components:
+      - type: ship
+        name: EF76 Nebulon-B escort frigate
+        quantity: 1
+      - type: ship
+        name: TIE/ln space superiority starfighter
+        quantity: 12
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 1
+  - name: DP20 Gunship Group
+    components:
+      - type: ship
+        name: DP20 gunship
+        quantity: 1
+  - name: Lancer Squadron
+    components:
+      - type: ship
+        name: Lancer-class frigate/Legends
+        quantity: 1
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 1
+  - name: IPV-1 Patrol Group
+    components:
+      - type: ship
+        name: IPV-1 System Patrol Craft
+        quantity: 1
+      - type: ship
+        name: TIE/ln space superiority starfighter
+        quantity: 2
+  - name: CR90
+    components:
+      - type: ship
+        name: CR90 corvette
+        quantity: 1
+      - type: ship
+        name: TIE/ln space superiority starfighter
+        quantity: 4
+  - name: Sector Capital Squadron
+    components:
+      - type: unit
+        name: ISD II
+        quantity: 24
+  - name: Sector Cruiser Squadron
+    components:
+      - type: unit
+        name: Carrack
+        quantity: 60
+      - type: unit
+        name: Strike Cruiser
+        quantity: 40
+      - type: unit
+        name: Immobilizer
+        quantity: 5
+  - name: Sector Frigate Squadron
+    components:
+      - type: unit
+        name: Nebulon-B
+        quantity: 200
+  - name: Sector Corvette Squadron
+    components:
+      - type: unit
+        name: IPV-1 Patrol Group
+        quantity: 600
+      - type: unit
+        name: CR90
+        quantity: 500
+      - type: ship
+        name: DP20 gunship
+        quantity: 200
+  - name: Sector Support Wing
+    components:
+      - type: ship
+        name: Sentinel-class landing craft
+        quantity: 200
+      - type: ship
+        name: Lambda-class T-4a shuttle
+        quantity: 150
+      - type: ship
+        name: Class four container transport
+        quantity: 276
+      - type: ship
+        name: Gozanti-class cruiser
+        quantity: 240
+      - type: ship
+        name: MedStar-class frigate/Legends
+        quantity: 50
+      - type: ship
+        name: Altor-class replenishment ship
+        quantity: 20
+      - type: ship
+        name: Eta-class supply barge
+        quantity: 40
+  - name: Notional Sector Fleet
+    description: >-
+      Unit form of the Notional Sector Fleet, for nesting inside larger fleets such as the Imperial Navy. Composition
+      matches the standalone "Notional Sector Fleet" fleet entry.
+    components:
+      - type: unit
+        name: Sector Capital Squadron
+        quantity: 1
+      - type: unit
+        name: Sector Cruiser Squadron
+        quantity: 1
+      - type: unit
+        name: Sector Frigate Squadron
+        quantity: 1
+      - type: unit
+        name: Sector Corvette Squadron
+        quantity: 1
+      - type: unit
+        name: Sector Support Wing
+        quantity: 1
+  - name: Death Squadron
+    description: >-
+      Darth Vader's personal Star Destroyer strike fleet, built around his flagship the Executor. A roving force not
+      tied to any single sector, tasked with hunting the Rebel Alliance wherever it surfaced.
+    components:
+      - type: unit
+        name: Executor Super Star Destroyer
+        quantity: 1
+      - type: unit
+        name: ISD II
+        quantity: 6
+      - type: unit
+        name: Immobilizer
+        quantity: 2
+  - name: Vengeance Battle Group
+    description: >-
+      A dreadnought-centered task force historically used by rogue elements of the Navy for independent operations
+      outside normal sector command.
+    components:
+      - type: unit
+        name: Executor Super Star Destroyer
+        quantity: 1
+      - type: unit
+        name: ISD II
+        quantity: 3
+      - type: unit
+        name: Nebulon-B
+        quantity: 6
+      - type: unit
+        name: CR90
+        quantity: 12
+  - name: Outer Rim Standing Fleet
+    description: >-
+      A permanent garrison fleet kept in the Outer Rim Territories, separate from the normal sector allocation, to give
+      the Navy a persistent presence far from the Core.
+    components:
+      - type: unit
+        name: ISD II
+        quantity: 19
+      - type: unit
+        name: Immobilizer
+        quantity: 3
+  - name: Emperor's Personal Fleet
+    description: >-
+      Emperor Palpatine's own command fleet, kept separate from Death Squadron and other named formations, deployed only
+      when the Emperor's personal participation was required.
+    components:
+      - type: unit
+        name: Sovereign Super Star Destroyer
+        quantity: 1
+      - type: unit
+        name: ISD II
+        quantity: 6
+  - name: Byss Defense Fleet
+    description: >-
+      A standing fleet guarding the Emperor's secret world of Byss since the earliest days of the Empire, screening the
+      system from discovery and unauthorized entry.
+    components:
+      - type: unit
+        name: Bellator Star Dreadnought
+        quantity: 2
+      - type: unit
+        name: ISD II
+        quantity: 10
+      - type: unit
+        name: Immobilizer
+        quantity: 4
+  - name: Punitive Task Force
+    description: >-
+      An ad hoc Star Destroyer task force detached from an existing sector fleet to punish or depose a rebellious Moff
+      or warlord, then folded into a new sector fleet once the job was done. Not counted in the Navy's total strength,
+      since its ships are drawn from existing sector allocations rather than being additional hulls.
+    components:
+      - type: unit
+        name: ISD II
+        quantity: 3
+      - type: unit
+        name: Carrack
+        quantity: 6
+fleets:
+  - name: Imperial Navy
+    entries:
+      - type: unit
+        name: Death Star
+        quantity: 2
+      - type: unit
+        name: Notional Sector Fleet
+        quantity: 1024
+      - type: unit
+        name: Emperor's Personal Fleet
+        quantity: 1
+      - type: unit
+        name: Death Squadron
+        quantity: 1
+      - type: unit
+        name: Vengeance Battle Group
+        quantity: 1
+      - type: unit
+        name: Outer Rim Standing Fleet
+        quantity: 1
+      - type: unit
+        name: Byss Defense Fleet
+        quantity: 1
+  - name: Notional Sector Fleet
+    entries:
+      - type: unit
+        name: Sector Capital Squadron
+        quantity: 1
+      - type: unit
+        name: Sector Cruiser Squadron
+        quantity: 1
+      - type: unit
+        name: Sector Frigate Squadron
+        quantity: 1
+      - type: unit
+        name: Sector Corvette Squadron
+        quantity: 1
+      - type: unit
+        name: Sector Support Wing
+        quantity: 1
